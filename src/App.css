@@ -20,3 +20,16 @@
 .App-link {
   color: #09d3ac;
 }
+/* 
+.photo-header {
+  height: 400px;
+} */
+
+/* a, */
+/* a:visited {
+  color: blue;
+} */
+
+a.active {
+  color: red;
+}

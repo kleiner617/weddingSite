@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import HomeContainer from "./Containers/home-container";
+import CeremonyContainer from "./Containers/ceremony-container";
+import ReceptionContainer from "./Containers/reception-container";
+import RegistryContainer from "./Containers/registry-container";
+import RSVPContainer from "./Containers/rsvp-container";
+import MenuHeader from "./Components/menu-header";
+import "./App.css";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <MenuHeader></MenuHeader>
+        <Route path="/" component={HomeContainer} />
+        <Route path="/cermony" component={CeremonyContainer} />
+        <Route path="/reception" component={ReceptionContainer} />
+        <Route path="/registry" component={RegistryContainer} />
+        <Route path="/rsvp" component={RSVPContainer} />
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
