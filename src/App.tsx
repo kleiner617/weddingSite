@@ -12,16 +12,18 @@ import "./App.css";
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <div>
-        <MenuHeader></MenuHeader>
-        <Route path="/" component={HomeContainer} />
-        <Route path="/cermony" component={CeremonyContainer} />
-        <Route path="/reception" component={ReceptionContainer} />
-        <Route path="/registry" component={RegistryContainer} />
-        <Route path="/rsvp" component={RSVPContainer} />
-      </div>
-    </Router>
+    <div>
+      <MenuHeader></MenuHeader>
+      <Router>
+        <div>
+          <Route path="/" component={HomeContainer} />
+          <Route path="/cermony" component={CeremonyContainer} />
+          <Route path="/reception" component={ReceptionContainer} />
+          <Route path="/registry" component={RegistryContainer} />
+          <Route path="/rsvp" component={RSVPContainer} />
+        </div>
+      </Router>
+    </div>
   );
 };
 
