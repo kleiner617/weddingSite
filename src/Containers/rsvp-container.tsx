@@ -5,7 +5,7 @@ type Props = {};
 
 const RSVPDetails = styled("div")`
   height: 400px;
-  background-color: #33a2ff;
+  border: 1px black;
 `;
 
 export class RSVPContainer extends React.PureComponent<Props> {

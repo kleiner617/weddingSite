@@ -5,7 +5,7 @@ type Props = {};
 
 const ReceptionDetails = styled("div")`
   height: 400px;
-  background-color: #1abc9c;
+  border: 1px black;
 `;
 
 export class ReceptionContainer extends React.PureComponent<Props> {

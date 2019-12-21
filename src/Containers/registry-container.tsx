@@ -5,7 +5,7 @@ type Props = {};
 
 const RegistryDetails = styled("div")`
   height: 400px;
-  background-color: #daf7a6;
+  border: 1px black;
 `;
 
 export class RegistryContainer extends React.PureComponent<Props> {

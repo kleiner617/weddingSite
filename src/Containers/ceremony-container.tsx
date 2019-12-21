@@ -5,7 +5,7 @@ type Props = {};
 
 const CeremonyDetails = styled("div")`
   height: 400px;
-  background-color: #6712a0;
+  border: 1px black;
 `;
 
 export class CeremonyContainer extends React.PureComponent<Props> {
