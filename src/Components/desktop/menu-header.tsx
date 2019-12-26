@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import MenuItem from "./menu-item";
 // import { NavLink } from "react-router-dom";
 
 import { NavHashLink as NavLink } from "react-router-hash-link";
@@ -42,12 +41,6 @@ export class MenuHeader extends React.PureComponent<Props> {
           <NavLink to="/rsvp#rsvp" activeClassName="active">
             RSVP
           </NavLink>
-
-          {/* <MenuItem linkText="Ceremony" link="ceremony"></MenuItem>
-          <MenuItem linkText="Reception" link="reception"></MenuItem>
-          <CenterText> HEADER GOES HERE</CenterText>
-          <MenuItem linkText="Registry" link="registry"></MenuItem>
-          <MenuItem linkText="RSVP" link="rsvp"></MenuItem> */}
         </HeaderContainer>
       </div>
     );
