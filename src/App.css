@@ -20,10 +20,6 @@
 .App-link {
   color: #09d3ac;
 }
-/* 
-.photo-header {
-  height: 400px;
-} */
 
 a {
   color: black;
@@ -35,4 +31,58 @@ a {
 
 a.active {
   color: navy;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.header .hide {
+  display: none;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.header .show {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.header_link {
+  padding: 20px;
+  color: #314d4a;
+  font-weight: bold;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.selected {
+  border-bottom: 3px solid #11bb9a;
+  color: #11bb9a;
+}
+
+.section {
+  height: 40vh;
+}
+
+#ceremony {
+  /* background-color: #a388e8; */
+}
+
+#reception {
+  /* background-color: #f4769e; */
+}
+
+#registry {
+  /* background-color: #8face0; */
+}
+.bottom-spacer {
+  height: 110vh;
 }

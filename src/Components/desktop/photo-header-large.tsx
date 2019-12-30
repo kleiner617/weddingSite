@@ -10,28 +10,28 @@ export class PhotoHeader extends React.PureComponent<Props> {
         <Carousel>
           <Carousel.Item>
             <img
-              src={require("../Content/Images/purple.jpg")}
+              src={require("../../Content/Images/purple.jpg")}
               alt="placeholder1"
               style={{
-                height: 200
+                height: 600
               }}
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
-              src={require("../Content/Images/green.jpg")}
+              src={require("../../Content/Images/green.jpg")}
               alt="placeholder1"
               style={{
-                height: 200
+                height: 600
               }}
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
-              src={require("../Content/Images/blue.jpg")}
+              src={require("../../Content/Images/blue.jpg")}
               alt="placeholder1"
               style={{
-                height: 200
+                height: 600
               }}
             />
           </Carousel.Item>

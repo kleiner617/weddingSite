@@ -3,7 +3,10 @@ import styled from "@emotion/styled";
 import { slide as Menu } from "react-burger-menu";
 import { NavHashLink as NavLink } from "react-router-hash-link";
 
-type PropsType = {};
+type PropsType = {
+  allRefs: any;
+  navMenuOnClick: (ref: any) => void;
+};
 
 const MobileLayoutDiv = styled("div")``;
 
@@ -19,8 +22,8 @@ const styles = {
     position: "fixed",
     width: "36px",
     height: "30px",
-    left: "36px",
-    top: "36px"
+    left: "20px",
+    top: "20px"
   },
   bmBurgerBarsHover: {
     background: "#a90000"
@@ -92,6 +95,23 @@ export class MobileNavMenu extends React.Component<PropsType, StateType> {
   }
   toggleMenu = () => {
     this.setState({ isOpen: !this.state.isOpen });
+  };
+
+  onMenuItemClick = (selectedType: string) => {
+    const { allRefs, navMenuOnClick } = this.props;
+
+    const selectedRef = allRefs.find((refObj: any) => {
+      return refObj.section === selectedType;
+    });
+
+    // const sectionRefs = [
+    //   { section: "ceremony", ref: ceremonyRef },
+    //   { section: "reception", ref: receptionRef },
+    //   { section: "registry", ref: registryRef }
+    // ];
+
+    // navMenuOnClick(selectedRef.ref);
+    this.toggleMenu();
   };
 
   handleStateChange(state: StateType) {

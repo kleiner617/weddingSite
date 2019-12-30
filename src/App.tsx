@@ -44,12 +44,10 @@ const App = () => {
 
   return (
     <div>
-      <Router>
-        <div>
-          <Route path="/" component={whichContainer} />
-          <Route path="/rsvp" component={RSVPContainer} />
-        </div>
-      </Router>
+      <Switch>
+        <Route path="/" component={whichContainer} />
+        <Route path="/rsvp" component={RSVPContainer} />
+      </Switch>
     </div>
   );
 };

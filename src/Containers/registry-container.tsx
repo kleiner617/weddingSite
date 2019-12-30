@@ -1,7 +1,10 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 
-type Props = {};
+type Props = {
+  className?: string;
+  id?: string;
+};
 
 const RegistryDetails = styled("div")`
   height: 400px;
@@ -11,7 +14,7 @@ const RegistryDetails = styled("div")`
 export class RegistryContainer extends React.PureComponent<Props> {
   render() {
     return (
-      <RegistryDetails id="registry">
+      <RegistryDetails className={this.props.className} id={this.props.id}>
         This is the Registry Details
       </RegistryDetails>
     );

@@ -11,6 +11,7 @@
     "@types/react-dom": "16.9.3",
     "bootstrap": "^4.3.1",
     "nuka-carousel": "^4.5.12",
+    "prettier": "^1.19.1",
     "react": "^16.11.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-burger-menu": "^2.6.13",
@@ -45,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^24.0.13",
     "@types/webfontloader": "^1.6.29"
   }
 }
