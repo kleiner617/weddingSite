@@ -1,77 +1,100 @@
-import * as React from "react";
+import React, { FunctionComponent, useState } from "react";
 import styled from "@emotion/styled";
-import { Form, Button } from "react-bootstrap";
+import { Formik, Field, Form, FormikHelpers, useFormik } from "formik";
+import firebase from "../fire";
+import * as _ from "lodash";
+
+import { EnterFirstName } from "../Components/rsvp/enter-first-name";
+import AttendanceDetails from "../Components/rsvp/attendance-details";
 
 type Props = {};
+type State = {
+  firstName: string;
+  lastName: string;
+  isAttending: boolean | null;
+  allowedPlusOne: boolean;
+};
+
+type EventType = {
+  target: {
+    value: string;
+    id: string;
+  };
+};
 
 const RSVPDetails = styled("div")`
   height: 400px;
   border: 1px black;
 `;
 
-const returnNameDetails = () => {
+interface Values {
+  firstName: string;
+  lastName: string;
+  email: string;
+  isCheckedYes: boolean;
+  isCheckedNo: boolean;
+}
+
+export const RSVPContainer: FunctionComponent<Props> = props => {
+  // const [selectedGuest, setSelectedGuest] = useState<any>({
+  //   firstName: "",
+  //   lastName: "",
+  //   id: -1,
+  //   groupId: -1
+  // });
+  const [selectedGuest, setSelectedGuest] = useState<any>({});
+  //Another state variable to increase the counter as button clicks
+  const [additionalGuests, setAdditionalGuests] = useState<any[]>([]);
+
+  const checkIfAllowedPlusOne = (firstName: string, lastName: string) => {
+    firebase
+      .database()
+      .ref(`guests`)
+      .orderByChild("lastName")
+      .equalTo(lastName)
+      .once("value")
+      .then(snapshot => {
+        if (snapshot.val()) {
+          let items = snapshot.val();
+          let newState = [];
+          for (let item in items) {
+            newState.push(items[item]);
+          }
+
+          helperFunction(newState, firstName, lastName);
+        }
+      });
+  };
+
+  const helperFunction = (
+    familyNames: any[],
+    firstName: string,
+    lastName: string
+  ) => {
+    var selectedPerson = _.remove(familyNames, function(n: any) {
+      return n.firstName === firstName;
+    });
+    const familyGroup = familyNames.filter((person: any) => {
+      return person.groupid === selectedPerson[0].groupid;
+    });
+    setSelectedGuest(selectedPerson[0]);
+    setAdditionalGuests(familyGroup);
+
+    console.log(selectedPerson);
+    console.log(familyGroup);
+  };
+
   return (
-    <Form.Row>
-      <Form.Group controlId="formName">
-        <Form.Label>First Name</Form.Label>
-        <Form.Control />
-      </Form.Group>
-      <Form.Group controlId="formName">
-        <Form.Label>Last Name</Form.Label>
-        <Form.Control />
-      </Form.Group>
-
-      {/* <Form.Group controlId="formGridState">
-        <Form.Label>State</Form.Label>
-        <Form.Control as="select">
-          <option>Choose...</option>
-          <option>...</option>
-        </Form.Control>
-      </Form.Group>
-
-      <Form.Group controlId="formGridZip">
-        <Form.Label>Zip</Form.Label>
-        <Form.Control />
-      </Form.Group> */}
-    </Form.Row>
+    <RSVPDetails id="rsvp">
+      <EnterFirstName onNextButton={checkIfAllowedPlusOne}></EnterFirstName>
+      {selectedGuest.firstName && (
+        <AttendanceDetails
+          selectedGuest={selectedGuest}
+          additionalGuests={additionalGuests}
+        ></AttendanceDetails>
+      )}
+    </RSVPDetails>
   );
 };
-
-export class RSVPContainer extends React.PureComponent<Props> {
-  render() {
-    return (
-      <RSVPDetails id="rsvp">
-        <div>Celebrate with us!</div>
-        <Form>
-          {returnNameDetails()}
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          {/* TODO: ERK, need to only allow 1 checkbox at a time.  OR obviously just switch to radio buttons... */}
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Label>Will you be attending?</Form.Label>
-            <Form.Check type="checkbox" label="yes" />
-            <Form.Check type="checkbox" label="no" />
-          </Form.Group>
-          {/* Only return this based on the name that is typed in the first name/last name box. */}
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Label>I'm bringing a plus one</Form.Label>
-            <Form.Check type="checkbox" />
-          </Form.Group>
-          {/* TODO: ERK, need to only return this if they are actually returning a plus one... */}
-          {returnNameDetails()}
-          <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Anything else we need to know?</Form.Label>
-            <Form.Control as="textarea" rows="3" />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            RSVP
-          </Button>
-        </Form>
-      </RSVPDetails>
-    );
-  }
-}
 
 export default RSVPContainer;
