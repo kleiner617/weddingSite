@@ -12,13 +12,6 @@ const MobileLayoutDiv = styled("div")``;
 
 const styles = {
   bmBurgerButton: {
-    // position: "relative",
-    // display: "block",
-    // width: "36px",
-    // height: "30px",
-    // padding: "0px 0px 0px 15px",
-    // margin: "20px 0px 20px 26px",
-    // zIndex: 1
     position: "fixed",
     width: "36px",
     height: "30px",
@@ -135,13 +128,21 @@ export class MobileNavMenu extends React.Component<PropsType, StateType> {
         >
           Ceremony
         </NavLink>
+
         <NavLink
-          smooth
-          to="/reception#reception"
+          to="/getting-there#getting-there"
           activeClassName="active"
           onClick={this.toggleMenu}
         >
-          Reception
+          Getting There
+        </NavLink>
+        <NavLink
+          smooth
+          to="/faq#faq"
+          activeClassName="active"
+          onClick={this.toggleMenu}
+        >
+          FAQ
         </NavLink>
 
         <NavLink

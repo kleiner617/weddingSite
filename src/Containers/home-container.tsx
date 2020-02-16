@@ -8,6 +8,7 @@ import RegistryContainer from "./registry-container";
 import RSVPContainer from "./rsvp-container";
 import CeremonyContainer from "./ceremony-container";
 import Sticky from "react-sticky-el";
+import NameHeaderDesktop from "../Components/desktop/name-header-desktop";
 
 type Props = {};
 
@@ -95,6 +96,7 @@ const HomeContainer = () => {
     <div className="App">
       <PhotoHeader />
       <div className="content">
+        <NameHeaderDesktop></NameHeaderDesktop>
         <div
           // className="sticky"
           className={`sticky ${

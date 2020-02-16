@@ -7,42 +7,20 @@ import RSVPContainer from "./Containers/rsvp-container";
 import "./App.css";
 import { useMediaQuery } from "react-responsive";
 
-// const App: React.FC = () => {
-//   return (
-//     <div>
-//       <DesktopContainer />
-//       <MobileContainer />
-//       {/* <Route path="/" component={HomeContainer} /> */}
-//       {/* <Router>
-//         <div>
-//           <Route path="/cermony" component={CeremonyContainer} />
-//           <Route path="/reception" component={ReceptionContainer} />
-//           <Route path="/registry" component={RegistryContainer} />
-//           <Route path="/rsvp" component={RSVPContainer} />
-//         </div>
-//       </Router> */}
-//     </div>
-//   );
-// };
-
 const App = () => {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: "(min-device-width: 1224px)"
-  });
-  const isBigScreen = useMediaQuery({ query: "(min-device-width: 1824px)" });
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
-  const isTabletOrMobileDevice = useMediaQuery({
-    query: "(max-device-width: 1224px)"
-  });
-  const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
-  const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
+  const isDesktop = useMediaQuery({ minWidth: 992 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 });
+  // const isMobile = useMediaQuery({ maxWidth: 767 });
+  // const isNotMobile = useMediaQuery({ minWidth: 768 });
 
-  const whichContainer = isDesktopOrLaptop ? DesktopContainer : MobileContainer;
+  const whichContainer =
+    isDesktop || isTablet ? DesktopContainer : MobileContainer;
 
   return (
     <div>
       {/* <Switch> */}
       <Route path="/" component={whichContainer} />
+      {/* <Route path="/rsvp" component={RSVPContainer} /> */}
       <Route path="/rsvp" component={RSVPContainer} />
       {/* </Switch> */}
     </div>

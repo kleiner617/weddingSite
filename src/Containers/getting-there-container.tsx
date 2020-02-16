@@ -7,8 +7,9 @@ type Props = {
   isMobile?: boolean;
 };
 
-const FAQDetails = styled("div")`
+const GettingThereDetails = styled("div")`
   padding: ${(props: Props): string => (props.isMobile ? `30px 0` : "60px 0")};
+  background: #f0f3ed;
 `;
 
 const Title = styled("div")`
@@ -16,7 +17,6 @@ const Title = styled("div")`
   font-weight: bold;
   padding-top: 15px;
   padding-bottom: 10px;
-  color: #a6b691;
 `;
 const Details = styled("div")`
   font-size: 24px;
@@ -29,23 +29,21 @@ const CircleImage = styled("img")`
   width: ${(props: Props): string => (props.isMobile ? `250px` : "500px")};
 `;
 
-export class FAQContainer extends React.PureComponent<Props> {
+export class GettingThereContainer extends React.PureComponent<Props> {
   render() {
     return (
-      <FAQDetails className={this.props.className} id={this.props.id}>
+      <GettingThereDetails className={this.props.className} id={this.props.id}>
         <CircleImage
-          src={require("../Content/Images/circle_2.jpg")}
+          src={require("../Content/Images/circle_3.jpg")}
           {...this.props}
         ></CircleImage>
-        <Title>Details</Title>
+        <Title>Getting There</Title>
         <Details>
-          <p>Valet parking will be available...</p>
-          <p>Open bar</p>
-          <p> Please let us know if you have any dietary restrictions</p>
+          <p>Urban roost is located in Scott's addition...</p>
         </Details>
-      </FAQDetails>
+      </GettingThereDetails>
     );
   }
 }
 
-export default FAQContainer;
+export default GettingThereContainer;

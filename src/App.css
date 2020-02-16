@@ -70,20 +70,8 @@ a.active {
 }
 
 .section {
-  /* height: 40vh; */
 }
 
-#ceremony {
-  /* background-color: #a388e8; */
-}
-
-#reception {
-  /* background-color: #f4769e; */
-}
-
-#registry {
-  /* background-color: #8face0; */
-}
 .bottom-spacer {
   height: 110vh;
 }

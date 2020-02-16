@@ -2,11 +2,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import PhotoHeader from "../Components/mobile/photo-header-mobile";
-import ReceptionContainer from "./faq-container";
+import FAQContainer from "./faq-container";
 import RegistryContainer from "./registry-container";
 import CeremonyContainer from "./ceremony-container";
 import MobileNavMenu from "../Components/mobile/mobile-nav-menu";
 import RSVPContainer from "./rsvp-container";
+import GettingThereContainer from "./getting-there-container";
+import NameHeaderMobile from "../Components/mobile/name-header-mobile";
 
 type Props = {};
 
@@ -37,12 +39,14 @@ const MobileContainer = () => {
 
   const headerRef = useRef(null);
   const ceremonyRef = useRef(null);
-  const receptionRef = useRef(null);
+  const gettingThereRef = useRef(null);
+  const faqRef = useRef(null);
   const registryRef = useRef(null);
 
   const sectionRefs = [
     { section: "ceremony", ref: ceremonyRef },
-    { section: "reception", ref: receptionRef },
+    { section: "faq", ref: faqRef },
+    { section: "getting-there", ref: gettingThereRef },
     { section: "registry", ref: registryRef }
   ];
 
@@ -74,7 +78,7 @@ const MobileContainer = () => {
   }, [visibleSection]);
 
   const navMenuOnClick = (ref: any) => {
-    scrollTo(receptionRef.current);
+    // scrollTo(faqRef.current);
   };
 
   return (
@@ -84,63 +88,36 @@ const MobileContainer = () => {
         navMenuOnClick={navMenuOnClick}
       ></MobileNavMenu>
       <PhotoHeader />
+      <NameHeaderMobile></NameHeaderMobile>
       <div className="content">
         <div
           // className="sticky"
           className={`sticky ${
             visibleSection === "ceremony" ||
-            visibleSection === "reception" ||
+            visibleSection === "getting-there" ||
+            visibleSection === "faq" ||
             visibleSection === "registry"
               ? "show"
               : "hide"
           }`}
         >
-          <div className="header" ref={headerRef}>
-            {/* <button
-              type="button"
-              className={`header_link ${
-                visibleSection === "ceremony" ? "selected" : ""
-              }`}
-              onClick={() => {
-                scrollTo(ceremonyRef.current);
-              }}
-            >
-              Ceremony
-            </button>
-            <button
-              type="button"
-              className={`header_link ${
-                visibleSection === "reception" ? "selected" : ""
-              }`}
-              onClick={() => {
-                scrollTo(receptionRef.current);
-              }}
-            >
-              Reception
-            </button>
-            <button
-              type="button"
-              className={`header_link ${
-                visibleSection === "registry" ? "selected" : ""
-              }`}
-              onClick={() => {
-                scrollTo(registryRef.current);
-              }}
-            >
-              Registry
-            </button> */}
-          </div>
+          <div className="header" ref={headerRef}></div>
         </div>
 
         <div className="section" id="ceremony" ref={ceremonyRef}>
           <CeremonyContainer isMobile={true}></CeremonyContainer>
         </div>
-        <div className="section" id="reception" ref={receptionRef}>
-          <ReceptionContainer></ReceptionContainer>
+        <div className="section" id="getting-there" ref={gettingThereRef}>
+          <GettingThereContainer isMobile={true}></GettingThereContainer>
         </div>
+        <div className="section" id="faq" ref={faqRef}>
+          <FAQContainer isMobile={true}></FAQContainer>
+        </div>
+
         <div className="section" id="registry" ref={registryRef}>
-          <RegistryContainer></RegistryContainer>
+          <RegistryContainer isMobile={true}></RegistryContainer>
         </div>
+
         {/* <RSVPContainer></RSVPContainer> */}
       </div>
       <div className="bottom-spacer" />
