@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import MenuHeader from "../Components/desktop/menu-header";
 import PhotoHeader from "../Components/desktop/photo-header-large";
-import ReceptionContainer from "./reception-container";
+import ReceptionContainer from "./faq-container";
 import RegistryContainer from "./registry-container";
 import RSVPContainer from "./rsvp-container";
 import CeremonyContainer from "./ceremony-container";

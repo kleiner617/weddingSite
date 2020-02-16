@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import PhotoHeader from "../Components/mobile/photo-header-mobile";
-import ReceptionContainer from "./reception-container";
+import ReceptionContainer from "./faq-container";
 import RegistryContainer from "./registry-container";
 import CeremonyContainer from "./ceremony-container";
 import MobileNavMenu from "../Components/mobile/mobile-nav-menu";
@@ -133,7 +133,7 @@ const MobileContainer = () => {
         </div>
 
         <div className="section" id="ceremony" ref={ceremonyRef}>
-          <CeremonyContainer></CeremonyContainer>
+          <CeremonyContainer isMobile={true}></CeremonyContainer>
         </div>
         <div className="section" id="reception" ref={receptionRef}>
           <ReceptionContainer></ReceptionContainer>
@@ -141,7 +141,7 @@ const MobileContainer = () => {
         <div className="section" id="registry" ref={registryRef}>
           <RegistryContainer></RegistryContainer>
         </div>
-        <RSVPContainer></RSVPContainer>
+        {/* <RSVPContainer></RSVPContainer> */}
       </div>
       <div className="bottom-spacer" />
     </div>

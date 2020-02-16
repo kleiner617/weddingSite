@@ -132,9 +132,6 @@ export const EnterFirstName: FunctionComponent<Props> = props => {
     const familyGroup = familyNames.filter((person: any) => {
       return person.groupid === selectedPerson[0].groupid;
     });
-
-    console.log(selectedPerson);
-    console.log(familyGroup);
   };
 
   const submitNames = (values: any, { setSubmitting }: any) => {

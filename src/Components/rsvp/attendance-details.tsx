@@ -40,7 +40,6 @@ interface Values {
 }
 const FormDetails = (props: any) => {
   const { selectedGuest, additionalGuests } = props;
-  console.log(props);
   return (
     <form onSubmit={props.handleSubmit}>
       <ResponseSection>
@@ -52,7 +51,32 @@ const FormDetails = (props: any) => {
           <label htmlFor="isCheckedNo">No</label>
           <Field type="checkbox" name="isCheckedNo"></Field>
         </div>
+
+        {/* TODO: ERK< need to have a unique id for each of these */}
+        {/* Look at example creating dynamic checkboxes/filter things */}
+        {/* Then need to actually save responses!! */}
       </ResponseSection>
+
+      {additionalGuests.map((guest: any, index: number) => {
+        return (
+          <ResponseSection>
+            <div>{guest.firstName}</div>
+            <div>{guest.lastName}</div>
+            <div>
+              <label htmlFor={`additionalGuestsYes.${index}`}>Yes</label>
+              <Field
+                type="checkbox"
+                name={`additionalGuestsYes.${index}`}
+              ></Field>
+              <label htmlFor={`additionalGuestsNo.${index}`}>No</label>
+              <Field
+                type="checkbox"
+                name={`additionalGuestsNo.${index}`}
+              ></Field>
+            </div>
+          </ResponseSection>
+        );
+      })}
 
       <div></div>
       <label htmlFor="additionalInfo">Anything else we need to know?</label>
@@ -67,12 +91,13 @@ const FormDetails = (props: any) => {
 
 const submitNames = (values: any, { setSubmitting }: any) => {
   //   checkIfAllowedPlusOne(values.firstName, values.lastName);
-  alert(values);
+  console.log(values);
+
+  // TODO: ERK, additional guests y/n will be stored in an array.  Need to map guests to these y/n values
+
+  // On submit, need to actually save this stuff, please!
+
   setSubmitting(false);
-  // setTimeout(() => {
-  //   alert(JSON.stringify(values, null, 2));
-  //   setSubmitting(false);
-  // }, 400);
 };
 
 export const AttendanceDetails: FunctionComponent<Props> = props => {
@@ -84,7 +109,11 @@ export const AttendanceDetails: FunctionComponent<Props> = props => {
       <Formik
         initialValues={{
           firstName: "",
-          lastName: ""
+          lastName: "",
+          isCheckedYes: false,
+          isCheckedNo: false,
+          additionalGuestsYes: [],
+          additionalGuestsNo: []
         }}
         onSubmit={submitNames}
         render={props => (

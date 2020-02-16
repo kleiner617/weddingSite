@@ -3,9 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import DesktopContainer from "./Containers/home-container";
 import MobileContainer from "./Containers/mobile-container";
-import CeremonyContainer from "./Containers/ceremony-container";
-import ReceptionContainer from "./Containers/reception-container";
-import RegistryContainer from "./Containers/registry-container";
 import RSVPContainer from "./Containers/rsvp-container";
 import "./App.css";
 import { useMediaQuery } from "react-responsive";
@@ -44,10 +41,10 @@ const App = () => {
 
   return (
     <div>
-      <Switch>
-        <Route path="/" component={whichContainer} />
-        <Route path="/rsvp" component={RSVPContainer} />
-      </Switch>
+      {/* <Switch> */}
+      <Route path="/" component={whichContainer} />
+      <Route path="/rsvp" component={RSVPContainer} />
+      {/* </Switch> */}
     </div>
   );
 };

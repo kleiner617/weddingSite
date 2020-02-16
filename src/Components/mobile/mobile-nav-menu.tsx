@@ -152,9 +152,9 @@ export class MobileNavMenu extends React.Component<PropsType, StateType> {
           Registry
         </NavLink>
 
-        <NavLink to="/rsvp" activeClassName="active" onClick={this.toggleMenu}>
+        {/* <NavLink to="/rsvp" activeClassName="active" onClick={this.toggleMenu}>
           RSVP
-        </NavLink>
+        </NavLink> */}
         {/* </MobileNavigation> */}
       </Menu>
     );

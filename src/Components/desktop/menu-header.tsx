@@ -38,9 +38,7 @@ export class MenuHeader extends React.PureComponent<Props> {
             Registry
           </NavLink>
 
-          <NavLink to="/rsvp#rsvp" activeClassName="active">
-            RSVP
-          </NavLink>
+          <NavLink activeClassName="active">RSVP</NavLink>
         </HeaderContainer>
       </div>
     );

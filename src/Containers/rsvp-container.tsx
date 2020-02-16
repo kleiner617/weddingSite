@@ -75,18 +75,17 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
       return n.firstName === firstName;
     });
     const familyGroup = familyNames.filter((person: any) => {
-      return person.groupid === selectedPerson[0].groupid;
+      return person.groupId === selectedPerson[0].groupId;
     });
     setSelectedGuest(selectedPerson[0]);
     setAdditionalGuests(familyGroup);
-
-    console.log(selectedPerson);
-    console.log(familyGroup);
   };
 
   return (
-    <RSVPDetails id="rsvp">
-      <EnterFirstName onNextButton={checkIfAllowedPlusOne}></EnterFirstName>
+    <RSVPDetails>
+      {!selectedGuest.firstName && (
+        <EnterFirstName onNextButton={checkIfAllowedPlusOne}></EnterFirstName>
+      )}
       {selectedGuest.firstName && (
         <AttendanceDetails
           selectedGuest={selectedGuest}

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: "Open Sans Condensed", sans-serif;
 }
 
 .App-logo {
@@ -69,7 +70,7 @@ a.active {
 }
 
 .section {
-  height: 40vh;
+  /* height: 40vh; */
 }
 
 #ceremony {

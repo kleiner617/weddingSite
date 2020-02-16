@@ -14,21 +14,21 @@ export class PhotoHeader extends React.PureComponent<Props> {
         <Carousel>
           <Carousel.Item>
             <img
-              src={require("../../Content/Images/purple.jpg")}
+              src={require("../../Content/Images/HPEK_mobile_1.jpg")}
               alt="placeholder1"
               style={photoMobileStyle}
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
-              src={require("../../Content/Images/green.jpg")}
+              src={require("../../Content/Images/HPEK_mobile_2.jpg")}
               alt="placeholder1"
               style={photoMobileStyle}
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
-              src={require("../../Content/Images/blue.jpg")}
+              src={require("../../Content/Images/HPEK_mobile_3.jpg")}
               alt="placeholder1"
               style={photoMobileStyle}
             />
