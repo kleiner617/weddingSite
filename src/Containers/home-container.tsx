@@ -113,7 +113,6 @@ const HomeContainer = () => {
           <NameHeaderDesktop></NameHeaderDesktop>
         </div>
         <div
-          // className="sticky"
           className={`sticky ${
             visibleSection === "ceremony" ||
             visibleSection === "getting-there" ||
@@ -149,6 +148,9 @@ const HomeContainer = () => {
 
             <HeartImg
               src={require("../Content/Images/heart_script.png")}
+              onClick={() => {
+                scrollTo(headerRef.current);
+              }}
             ></HeartImg>
             <button
               type="button"

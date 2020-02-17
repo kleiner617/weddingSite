@@ -29,6 +29,11 @@ const DetailsTitle = styled("div")`
   font-family: "Sacramento", cursive;
 `;
 
+const AtText = styled("p")`
+  font-size: ${(props: Props): string => (props.isMobile ? "20px" : "30px")};
+  margin: 0;
+  line-height: ${(props: Props): string => (props.isMobile ? "15px" : "20px")};
+`;
 const DetailsText = styled("p")`
   font-size: ${(props: Props): string => (props.isMobile ? "24px" : "36px")};
   margin: 0;
@@ -104,9 +109,7 @@ export class CeremonyContainer extends React.PureComponent<Props> {
           </i>
           <DetailsTitle {...this.props}>When</DetailsTitle>
           <DetailsText {...this.props}>May 16, 2020</DetailsText>
-          <DetailsText {...this.props} style={{ fontSize: "18px" }}>
-            at
-          </DetailsText>
+          <AtText {...this.props}>at</AtText>
           <DetailsText {...this.props}>4:30 pm</DetailsText>
         </Details>
         <Details>

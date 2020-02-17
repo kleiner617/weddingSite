@@ -66,11 +66,15 @@ const styles = {
     color: "#4A4A4A",
     fontWeight: "300"
   }
-  // clickedText: {
-  //   color: "#0559B3",
-  //   fontWeight: "700"
-  // }
 };
+
+const HeartImg = styled("img")`
+  height: 90px;
+  width: 90px;
+  margin-top: -10px;
+  display: inline-block !important;
+  margin-top: 75px;
+`;
 
 type StateType = {
   isOpen: boolean;
@@ -134,7 +138,7 @@ export class MobileNavMenu extends React.Component<PropsType, StateType> {
           activeClassName="active"
           onClick={this.toggleMenu}
         >
-          Getting There
+          Venue
         </NavLink>
         <NavLink
           smooth
@@ -142,7 +146,7 @@ export class MobileNavMenu extends React.Component<PropsType, StateType> {
           activeClassName="active"
           onClick={this.toggleMenu}
         >
-          FAQ
+          Details
         </NavLink>
 
         <NavLink
@@ -152,6 +156,10 @@ export class MobileNavMenu extends React.Component<PropsType, StateType> {
         >
           Registry
         </NavLink>
+
+        <HeartImg
+          src={require("../../Content/Images/heart_script_black.png")}
+        ></HeartImg>
 
         {/* <NavLink to="/rsvp" activeClassName="active" onClick={this.toggleMenu}>
           RSVP
