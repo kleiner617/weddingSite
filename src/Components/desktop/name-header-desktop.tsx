@@ -20,6 +20,7 @@ const EmilyHeatherTitle = styled("img")`
 const DateText = styled("div")`
   font-size: 46px;
   margin-top: -12px;
+  color: #081090;
 `;
 
 export class NameHeader extends React.PureComponent<Props> {
@@ -27,7 +28,7 @@ export class NameHeader extends React.PureComponent<Props> {
     return (
       <NameContent className={this.props.className} id={this.props.id}>
         <EmilyHeatherTitle
-          src={require("../../Content/Images/emily_heather.png")}
+          src={require("../../Content/Images/name_header_desktop.png")}
           {...this.props}
         ></EmilyHeatherTitle>
         <DateText>May 16, 2020</DateText>

@@ -42,13 +42,25 @@ a.active {
   z-index: 10;
 }
 
-.header .hide {
+.top-header-hide {
+  display: none;
+  justify-content: center;
+  background-color: #fff;
+}
+.top-header-show {
+  display: flex;
+  z-index: 99999;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.hide {
   display: none;
   justify-content: center;
   background-color: #fff;
 }
 
-.header .show {
+.sticky .show {
   display: flex;
   justify-content: center;
   background-color: #fff;
@@ -56,17 +68,30 @@ a.active {
 
 .header_link {
   padding: 20px;
-  color: #314d4a;
+  background-color: transparent;
+  color: #fff;
   font-weight: bold;
+  font-size: 24px;
   border: none;
   border-bottom: 3px solid transparent;
   cursor: pointer;
   outline: none;
 }
 
+/* Common navy: 
+/* 081090 */
+
+/* common sage 
+a6b691
+*/
+
+.header {
+  background-color: #a6b691;
+}
+
 .selected {
-  border-bottom: 3px solid #11bb9a;
-  color: #11bb9a;
+  border-bottom: 3px solid #081090;
+  color: #081090;
 }
 
 .section {

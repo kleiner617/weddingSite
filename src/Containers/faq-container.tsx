@@ -12,7 +12,7 @@ const FAQDetails = styled("div")`
 `;
 
 const Title = styled("div")`
-  font-size: 42px;
+  font-size: ${(props: Props): string => (props.isMobile ? `42px` : "70px")};
   font-weight: bold;
   padding-top: 15px;
   padding-bottom: 10px;
@@ -29,6 +29,15 @@ const CircleImage = styled("img")`
   width: ${(props: Props): string => (props.isMobile ? `250px` : "500px")};
 `;
 
+const FloralImage = styled("img")`
+  height: ${(props: Props): string => (props.isMobile ? "279px" : "557px")};
+  width: ${(props: Props): string => (props.isMobile ? "303px" : "601px")};
+  position: absolute;
+  margin-top: ${(props: Props): string => (props.isMobile ? "25px" : "19px")};
+  margin-left: ${(props: Props): string =>
+    props.isMobile ? "-283px" : "-565px"};
+`;
+
 export class FAQContainer extends React.PureComponent<Props> {
   render() {
     return (
@@ -37,11 +46,21 @@ export class FAQContainer extends React.PureComponent<Props> {
           src={require("../Content/Images/circle_2.jpg")}
           {...this.props}
         ></CircleImage>
-        <Title>Details</Title>
+        <FloralImage
+          src={require("../Content/Images/florals-6.png")}
+          {...this.props}
+        ></FloralImage>
+        <Title {...this.props}>Details</Title>
         <Details>
-          <p>Valet parking will be available...</p>
-          <p>Open bar</p>
-          <p> Please let us know if you have any dietary restrictions</p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
         </Details>
       </FAQDetails>
     );

@@ -14,6 +14,7 @@ const CeremonyDetails = styled("div")`
 const Title = styled("div")`
   font-size: ${(props: Props): string => (props.isMobile ? `42px` : "70px")};
   font-weight: bold;
+  margin-top: 40px;
   padding: ${(props: Props): string => (props.isMobile ? `15px 0` : "30px 0")};
   color: #a6b691;
 `;
@@ -37,11 +38,21 @@ const SubDetailsText = styled("p")`
   margin: 0;
 `;
 
+const ImageHolder = styled("div")``;
+
 const CircleImage = styled("img")`
   margin-top: 30px;
   border-radius: 50%;
   height: ${(props: Props): string => (props.isMobile ? "250px" : "500px")};
   width: ${(props: Props): string => (props.isMobile ? "250px" : "500px")};
+`;
+const FloralImage = styled("img")`
+  height: ${(props: Props): string => (props.isMobile ? "279px" : "557px")};
+  width: ${(props: Props): string => (props.isMobile ? "303px" : "601px")};
+  position: absolute;
+  margin-top: ${(props: Props): string => (props.isMobile ? "25px" : "19px")};
+  margin-left: ${(props: Props): string =>
+    props.isMobile ? "-283px" : "-565px"};
 `;
 
 export class CeremonyContainer extends React.PureComponent<Props> {
@@ -72,10 +83,17 @@ export class CeremonyContainer extends React.PureComponent<Props> {
   render() {
     return (
       <CeremonyDetails className={this.props.className} id={this.props.id}>
-        <CircleImage
-          src={require("../Content/Images/circle_1.jpg")}
-          {...this.props}
-        ></CircleImage>
+        <ImageHolder>
+          <CircleImage
+            src={require("../Content/Images/circle_1.jpg")}
+            {...this.props}
+          ></CircleImage>
+          <FloralImage
+            src={require("../Content/Images/florals-6.png")}
+            {...this.props}
+          ></FloralImage>
+        </ImageHolder>
+
         <Title {...this.props}>The Wedding</Title>
         <Details {...this.props}>
           <i

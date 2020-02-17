@@ -9,6 +9,7 @@ import MobileNavMenu from "../Components/mobile/mobile-nav-menu";
 import RSVPContainer from "./rsvp-container";
 import GettingThereContainer from "./getting-there-container";
 import NameHeaderMobile from "../Components/mobile/name-header-mobile";
+import Footer from "../Components/footer";
 
 type Props = {};
 
@@ -120,7 +121,7 @@ const MobileContainer = () => {
 
         {/* <RSVPContainer></RSVPContainer> */}
       </div>
-      <div className="bottom-spacer" />
+      <Footer isMobile={true}></Footer>
     </div>
   );
 };

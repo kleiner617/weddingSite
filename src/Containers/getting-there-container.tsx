@@ -13,7 +13,7 @@ const GettingThereDetails = styled("div")`
 `;
 
 const Title = styled("div")`
-  font-size: 42px;
+  font-size: ${(props: Props): string => (props.isMobile ? `42px` : "70px")};
   font-weight: bold;
   padding-top: 15px;
   padding-bottom: 10px;
@@ -28,6 +28,22 @@ const CircleImage = styled("img")`
   height: ${(props: Props): string => (props.isMobile ? `250px` : "500px")};
   width: ${(props: Props): string => (props.isMobile ? `250px` : "500px")};
 `;
+const FloralImage = styled("img")`
+  height: ${(props: Props): string => (props.isMobile ? "279px" : "557px")};
+  width: ${(props: Props): string => (props.isMobile ? "303px" : "601px")};
+  position: absolute;
+  margin-top: ${(props: Props): string => (props.isMobile ? "25px" : "19px")};
+  margin-left: ${(props: Props): string =>
+    props.isMobile ? "-283px" : "-565px"};
+`;
+const DetailsText = styled("p")`
+  font-size: ${(props: Props): string => (props.isMobile ? "24px" : "36px")};
+  margin: 0;
+`;
+const SubDetailsText = styled("p")`
+  font-size: ${(props: Props): string => (props.isMobile ? "20px" : "30px")};
+  margin: 0;
+`;
 
 export class GettingThereContainer extends React.PureComponent<Props> {
   render() {
@@ -37,9 +53,27 @@ export class GettingThereContainer extends React.PureComponent<Props> {
           src={require("../Content/Images/circle_3.jpg")}
           {...this.props}
         ></CircleImage>
-        <Title>Getting There</Title>
+        <FloralImage
+          src={require("../Content/Images/florals-6.png")}
+          {...this.props}
+        ></FloralImage>
+        <Title {...this.props}>Venue</Title>
         <Details>
-          <p>Urban roost is located in Scott's addition...</p>
+          <DetailsText {...this.props}>
+            <a href="https://www.lunchorsupper.com/urbanroostbeergarden">
+              Urban Roost
+            </a>
+            <span>
+              {" "}
+              is located in the Scott's Addition neighborhood of RVA.
+            </span>
+          </DetailsText>
+          <DetailsText {...this.props}>
+            Free Valet parking will be availble at the Marshal street entrance.
+            <SubDetailsText {...this.props}>
+              * Tips have been paid in advance (find wording for this.)
+            </SubDetailsText>
+          </DetailsText>
         </Details>
       </GettingThereDetails>
     );
