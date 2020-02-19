@@ -7,7 +7,7 @@ type Props = {
   isMobile?: boolean;
 };
 
-const GettingThereDetails = styled("div")`
+const ThingsToDoDetails = styled("div")`
   padding: ${(props: Props): string => (props.isMobile ? `30px 0` : "60px 0")};
   background: #f0f3ed;
 `;
@@ -15,14 +15,11 @@ const GettingThereDetails = styled("div")`
 const Title = styled("div")`
   font-size: ${(props: Props): string => (props.isMobile ? `42px` : "70px")};
   font-weight: bold;
-  margin-top: 40px;
-  padding: ${(props: Props): string => (props.isMobile ? `15px 0` : "30px 0")};
+  padding-top: 15px;
   padding-bottom: 10px;
 `;
 const Details = styled("div")`
   font-size: 24px;
-  width: ${(props: Props): string => (props.isMobile ? "85%" : "70%")};
-  margin: auto;
 `;
 
 const CircleImage = styled("img")`
@@ -42,44 +39,36 @@ const FloralImage = styled("img")`
 const DetailsText = styled("p")`
   font-size: ${(props: Props): string => (props.isMobile ? "24px" : "36px")};
   margin: 0;
-  padding-bottom: 20px;
 `;
 const SubDetailsText = styled("p")`
   font-size: ${(props: Props): string => (props.isMobile ? "20px" : "30px")};
   margin: 0;
 `;
 
-export class GettingThereContainer extends React.PureComponent<Props> {
+export class ThingsToDoContainer extends React.PureComponent<Props> {
   render() {
     return (
-      <GettingThereDetails className={this.props.className} id={this.props.id}>
+      <ThingsToDoDetails className={this.props.className} id={this.props.id}>
         <CircleImage
-          src={require("../Content/Images/circle_3.jpg")}
+          src={require("../Content/Images/circle_4.jpg")}
           {...this.props}
         ></CircleImage>
         <FloralImage
           src={require("../Content/Images/florals-6.png")}
           {...this.props}
         ></FloralImage>
-        <Title {...this.props}>Venue</Title>
+        <Title {...this.props}>Things To Do in RVA</Title>
         <Details>
           <DetailsText {...this.props}>
-            <a href="https://www.lunchorsupper.com/urbanroostbeergarden">
-              Urban Roost
-            </a>
-            <span>
-              {" "}
-              is located in the Scott's Addition neighborhood of RVA. Free Valet
-              parking will be availble at the Marshall street entrance.
-            </span>
-            <SubDetailsText {...this.props}>
-              * Tips have been paid in advance
-            </SubDetailsText>
+            If you're in RVA for the weekend, here are some of our favorite
+            things to do!
           </DetailsText>
+          <SubDetailsText>VMFA</SubDetailsText>
+          <SubDetailsText>Breweries around town</SubDetailsText>
         </Details>
-      </GettingThereDetails>
+      </ThingsToDoDetails>
     );
   }
 }
 
-export default GettingThereContainer;
+export default ThingsToDoContainer;

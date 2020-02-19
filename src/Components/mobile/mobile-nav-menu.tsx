@@ -39,7 +39,8 @@ const styles = {
   bmMenuWrap: {
     position: "fixed",
     height: "100%",
-    width: "100%"
+    width: "100%",
+    fontSize: "40px"
   },
   bmItemList: {
     fontSize: "28px",
@@ -49,7 +50,7 @@ const styles = {
     gridTemplateRows: "1fr 1fr 1fr 1fr",
     top: "50%",
     left: "50%",
-    paddingTop: "50%",
+    paddingTop: "30%",
     // msTransform: "translate(-50%, -50%)",
     // Transform: "translate(-50%, -50%)",
     justifyContent: "center",
@@ -87,27 +88,11 @@ export class MobileNavMenu extends React.Component<PropsType, StateType> {
       isOpen: false
     };
   }
-  showSettings(event: any) {
-    // event.preventDefault();
-  }
   toggleMenu = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
 
   onMenuItemClick = (selectedType: string) => {
-    const { allRefs, navMenuOnClick } = this.props;
-
-    const selectedRef = allRefs.find((refObj: any) => {
-      return refObj.section === selectedType;
-    });
-
-    // const sectionRefs = [
-    //   { section: "ceremony", ref: ceremonyRef },
-    //   { section: "reception", ref: receptionRef },
-    //   { section: "registry", ref: registryRef }
-    // ];
-
-    // navMenuOnClick(selectedRef.ref);
     this.toggleMenu();
   };
 
@@ -116,14 +101,17 @@ export class MobileNavMenu extends React.Component<PropsType, StateType> {
   }
 
   render() {
-    // NOTE: You also need to provide styles, see https://github.com/negomi/react-burger-menu#styling
     return (
       <Menu
         styles={styles}
         isOpen={this.state.isOpen}
         onStateChange={(state: StateType) => this.handleStateChange(state)}
+        customBurgerIcon={
+          <i className="material-icons" style={{ fontSize: "35px" }}>
+            menu
+          </i>
+        }
       >
-        {/* <MobileNavigation className="Somethingweird"> */}
         <NavLink
           smooth
           to="/cermony#ceremony"
@@ -148,7 +136,6 @@ export class MobileNavMenu extends React.Component<PropsType, StateType> {
         >
           Details
         </NavLink>
-
         <NavLink
           to="/registry#registry"
           activeClassName="active"
@@ -164,7 +151,6 @@ export class MobileNavMenu extends React.Component<PropsType, StateType> {
         {/* <NavLink to="/rsvp" activeClassName="active" onClick={this.toggleMenu}>
           RSVP
         </NavLink> */}
-        {/* </MobileNavigation> */}
       </Menu>
     );
   }

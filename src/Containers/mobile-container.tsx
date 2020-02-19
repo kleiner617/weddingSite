@@ -10,6 +10,7 @@ import RSVPContainer from "./rsvp-container";
 import GettingThereContainer from "./getting-there-container";
 import NameHeaderMobile from "../Components/mobile/name-header-mobile";
 import Footer from "../Components/footer";
+import Countdown from "../Components/countdown-component";
 
 type Props = {};
 
@@ -90,6 +91,7 @@ const MobileContainer = () => {
       ></MobileNavMenu>
       <PhotoHeader />
       <NameHeaderMobile></NameHeaderMobile>
+      {/* <Countdown isMobile={true} /> */}
       <div className="content">
         <div
           // className="sticky"

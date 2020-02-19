@@ -11,6 +11,7 @@ import Sticky from "react-sticky-el";
 import GettingThere, { GettingThereContainer } from "./getting-there-container";
 import NameHeaderDesktop from "../Components/desktop/name-header-desktop";
 import Footer from "../Components/footer";
+import CountdownComponent from "../Components/countdown-component";
 
 type Props = {};
 
@@ -110,7 +111,8 @@ const HomeContainer = () => {
             visibleSection={visibleSection}
           ></MenuHeader>
           <PhotoHeader />
-          <NameHeaderDesktop></NameHeaderDesktop>
+          <NameHeaderDesktop />
+          <CountdownComponent isMobile={true} />
         </div>
         <div
           className={`sticky ${

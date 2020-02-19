@@ -14,12 +14,14 @@ const FAQDetails = styled("div")`
 const Title = styled("div")`
   font-size: ${(props: Props): string => (props.isMobile ? `42px` : "70px")};
   font-weight: bold;
-  padding-top: 15px;
-  padding-bottom: 10px;
+  padding: ${(props: Props): string => (props.isMobile ? `15px 0` : "30px 0")};
+  margin-top: 40px;
   color: #a6b691;
 `;
 const Details = styled("div")`
   font-size: 24px;
+  width: ${(props: Props): string => (props.isMobile ? "85%" : "70%")};
+  margin: auto;
 `;
 
 const CircleImage = styled("img")`
@@ -38,6 +40,16 @@ const FloralImage = styled("img")`
     props.isMobile ? "-283px" : "-565px"};
 `;
 
+const DetailsText = styled("p")`
+  font-size: ${(props: Props): string => (props.isMobile ? "24px" : "36px")};
+  margin: 0;
+  padding-bottom: 20px;
+`;
+const SubDetailsText = styled("p")`
+  font-size: ${(props: Props): string => (props.isMobile ? "20px" : "30px")};
+  margin: 0;
+`;
+
 export class FAQContainer extends React.PureComponent<Props> {
   render() {
     return (
@@ -52,15 +64,10 @@ export class FAQContainer extends React.PureComponent<Props> {
         ></FloralImage>
         <Title {...this.props}>Details</Title>
         <Details>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+          <DetailsText {...this.props}>
+            {" "}
+            The venue will be open at 4pm and the ceremony will start at 4:30pm
+          </DetailsText>
         </Details>
       </FAQDetails>
     );

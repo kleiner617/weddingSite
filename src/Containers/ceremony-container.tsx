@@ -22,6 +22,8 @@ const Title = styled("div")`
 const Details = styled("div")`
   font-size: 24px;
   margin: 20px;
+  width: ${(props: Props): string => (props.isMobile ? "85%" : "70%")};
+  margin: auto;
 `;
 
 const DetailsTitle = styled("div")`
@@ -62,28 +64,9 @@ const FloralImage = styled("img")`
 
 export class CeremonyContainer extends React.PureComponent<Props> {
   openMaps = () => {
-    if (
-      /* if we're on iOS, open in Apple Maps */
-      navigator.platform.indexOf("iPhone") != -1 ||
-      navigator.platform.indexOf("iPad") != -1 ||
-      navigator.platform.indexOf("iPod") != -1
-    ) {
-      window.open(
-        "maps://maps.google.com/maps/dir/?api=1&destination=Urban+Roost+3023+W+Marshall+Street+Richmond+Virginia&amp;ll="
-      );
-    } /* else use Google */ else {
-      window.open(
-        "https://maps.google.com/maps/dir/?api=1&destination=Urban+Roost+3023+W+Marshall+Street+Richmond+Virginia&amp;ll="
-      );
-    }
-
-    // // window.open(
-    // //   "https:www.google.com/maps/dir/?api=1&destination=Urban+Roost+3023+W+Marshall+Street+Richmond+Virginia"
-    // // // );
-    // window.open(
-    //   "https://maps.google.com/?q=Houston,+TX"
-    //   "https://maps.google.com/maps/dir/?api=1&destination=Urban+Roost+3023+W+Marshall+Street+Richmond+Virginia&amp;ll="
-    // );
+    window.open(
+      "https://www.google.com/maps/dir/?api=1&destination=QVB&destination_place_id=ChIJ11lAdDEVsYkRUIzFDtlG9FU"
+    );
   };
   render() {
     return (

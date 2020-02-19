@@ -54,7 +54,7 @@ export class RegistryContainer extends React.PureComponent<Props> {
         break;
       case "williamsSonoma":
         window.open(
-          "www.williams-sonoma.com/registry/qg5fslvtz8/registry-list.html"
+          "https://www.williams-sonoma.com/registry/qg5fslvtz8/registry-list.html"
         );
         break;
       case "surLaTable":

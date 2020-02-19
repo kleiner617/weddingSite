@@ -10,8 +10,6 @@ import { useMediaQuery } from "react-responsive";
 const App = () => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 });
-  // const isMobile = useMediaQuery({ maxWidth: 767 });
-  // const isNotMobile = useMediaQuery({ minWidth: 768 });
 
   const whichContainer =
     isDesktop || isTablet ? DesktopContainer : MobileContainer;
@@ -20,7 +18,6 @@ const App = () => {
     <div>
       {/* <Switch> */}
       <Route path="/" component={whichContainer} />
-      {/* <Route path="/rsvp" component={RSVPContainer} /> */}
       <Route path="/rsvp" component={RSVPContainer} />
       {/* </Switch> */}
     </div>
