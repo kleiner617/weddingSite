@@ -80,7 +80,7 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
           .doc(`${uid}`);
 
         const documentSnapshot = await docRef.get();
-        await allGuests.push(documentSnapshot.data());
+        await allGuests.push({ ...documentSnapshot.data(), id: uid });
       });
 
       Promise.all(results).then(completed => {
@@ -88,6 +88,10 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
         setGuestList(allGuests);
       });
     }
+  };
+
+  const onSaveRSVP = (saveDetails: any) => {
+    // TODO: Add save stuff here, please
   };
 
   // const noResultsReturned = (invitationName: string) => {
@@ -162,7 +166,10 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
         <EnterFirstName onNextButton={getPossibleGuests}></EnterFirstName>
       )}
       {guestList.length && (
-        <AttendanceDetails guestList={guestList}></AttendanceDetails>
+        <AttendanceDetails
+          guestList={guestList}
+          onSave={onSaveRSVP}
+        ></AttendanceDetails>
       )}
     </RSVPDetails>
   );

@@ -104,7 +104,10 @@ type Props = {
   name: string;
   value: boolean;
   label: string;
-  onChange: (value: boolean, name: string) => void;
+  onChange: (
+    value: boolean,
+    name: { checkboxID: string; checkboxName: string }
+  ) => void;
   isDisabled: boolean;
   size?: string;
 };
@@ -112,7 +115,11 @@ type Props = {
 export const Checkbox: FunctionComponent<Props> = props => {
   const onChecked = (e: SyntheticEvent<HTMLInputElement>) => {
     const isChecked = e && e.currentTarget && e.currentTarget.checked;
-    props.onChange && props.onChange(isChecked, props.name);
+    props.onChange &&
+      props.onChange(isChecked, {
+        checkboxID: props.name,
+        checkboxName: props.label
+      });
   };
 
   return (

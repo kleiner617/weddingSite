@@ -17,9 +17,17 @@ const RSVPQuestion = styled("div")`
 
 export const EnterFirstName: FunctionComponent<Props> = props => {
   const [invitationName, setInvitationName] = useState<string>("");
+  const [enableButton, setEnableButton] = useState<boolean>(false);
 
   const onInvitationNameBlur = (e: any) => {
     setInvitationName(e.currentTarget.value || "");
+  };
+  const onInvitationNameChange = (e: any) => {
+    if (e.currentTarget.value && e.currentTarget.value.length > 0) {
+      setEnableButton(true);
+    } else {
+      setEnableButton(false);
+    }
   };
 
   const submitName = () => {
@@ -35,12 +43,13 @@ export const EnterFirstName: FunctionComponent<Props> = props => {
         id="invitationName"
         name="invitationName"
         onBlur={onInvitationNameBlur}
+        onChange={onInvitationNameChange}
       />
       <button
         type="submit"
         style={{ display: "block" }}
         onClick={submitName}
-        disabled={!invitationName}
+        disabled={!enableButton}
       >
         Next
       </button>
