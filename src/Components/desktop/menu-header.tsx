@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 type Props = {
   ceremonyClick: () => void;
@@ -7,6 +8,7 @@ type Props = {
   detailsClick: () => void;
   visibleSection: string;
   registryClick: () => void;
+  rsvpClick: () => void;
 };
 
 const TopHeader = styled("div")`
@@ -53,6 +55,12 @@ const MenuHeader = (props: Props) => {
         </TopHeaderButton>
         <TopHeaderButton className="top-button" onClick={props.registryClick}>
           Registry
+        </TopHeaderButton>
+        <TopHeaderButton className="top-button" onClick={props.rsvpClick}>
+          RSVP
+        </TopHeaderButton>
+        <TopHeaderButton>
+          <Link to={`/rsvp`}> RSVP </Link>
         </TopHeaderButton>
       </TopHeader>
     </div>

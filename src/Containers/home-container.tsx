@@ -12,6 +12,7 @@ import GettingThere, { GettingThereContainer } from "./getting-there-container";
 import NameHeaderDesktop from "../Components/desktop/name-header-desktop";
 import Footer from "../Components/footer";
 import CountdownComponent from "../Components/countdown-component";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -109,6 +110,7 @@ const HomeContainer = () => {
             detailsClick={scrollToDetails}
             registryClick={scrollToRegistry}
             visibleSection={visibleSection}
+            rsvpClick={scrollToRegistry}
           ></MenuHeader>
           <PhotoHeader />
           <NameHeaderDesktop />
@@ -176,6 +178,8 @@ const HomeContainer = () => {
             >
               Registry
             </button>
+
+            <Link to={`/rsvp`}> RSVP </Link>
           </div>
         </div>
 
