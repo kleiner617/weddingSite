@@ -27,10 +27,9 @@ const RSVPDetails = styled("div")`
   border: 1px black;
 `;
 
-const ResponseSection = styled("div")`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-`;
+const ResponseSection = styled("div")``;
+
+const ResponseHeader = styled("div")``;
 
 const reducer = (state: any, action: any) => {
   return {
@@ -237,12 +236,14 @@ export const AttendanceDetails: FunctionComponent<Props> = props => {
 
   return (
     <RSVPDetails id="rsvp">
-      <div> Will you be attending?</div>
+      <ResponseHeader> Will you be attending?</ResponseHeader>
       {guestList.map((guest: any) => {
         return (
           <ResponseSection>
-            <div>{guest.firstName}</div>
-            <div>{guest.lastName}</div>
+            <div>
+              {guest.firstName}
+              {guest.lastName}
+            </div>
             <div>
               <Checkbox
                 name={`${guest.id}`}

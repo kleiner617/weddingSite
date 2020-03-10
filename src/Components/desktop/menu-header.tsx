@@ -9,6 +9,7 @@ type Props = {
   visibleSection: string;
   registryClick: () => void;
   rsvpClick: () => void;
+  homeClick: () => void;
 };
 
 const TopHeader = styled("div")`
@@ -46,7 +47,6 @@ const MenuHeader = (props: Props) => {
         <TopHeaderButton className="top-button" onClick={props.venueClick}>
           Venue
         </TopHeaderButton>
-
         <HeartImg
           src={require("../../Content/Images/heart_script_black.png")}
         ></HeartImg>
@@ -55,9 +55,6 @@ const MenuHeader = (props: Props) => {
         </TopHeaderButton>
         <TopHeaderButton className="top-button" onClick={props.registryClick}>
           Registry
-        </TopHeaderButton>
-        <TopHeaderButton className="top-button" onClick={props.rsvpClick}>
-          RSVP
         </TopHeaderButton>
         <TopHeaderButton>
           <Link to={`/rsvp`}> RSVP </Link>

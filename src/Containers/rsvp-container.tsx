@@ -3,15 +3,17 @@ import styled from "@emotion/styled";
 import { Formik, Field, Form, FormikHelpers, useFormik } from "formik";
 import firebase from "../Components/firebase/firebase";
 import * as _ from "lodash";
-import MenuHeader from "../Components/desktop/menu-header";
+import StickyHeader from "../Components/desktop/sticky-header";
 import { allGuests, searchTerms } from "../Components/rsvp/test-data";
+import { withRouter } from "react-router-dom";
+
 // import { FirebaseContext, withFirebase } from "../Components/firebase";
 
 import { EnterFirstName } from "../Components/rsvp/enter-first-name";
 import AttendanceDetails from "../Components/rsvp/attendance-details";
 import { firestore } from "firebase";
 
-type Props = {};
+type Props = { history: any; isMobile?: boolean };
 type State = {
   firstName: string;
   lastName: string;
@@ -27,7 +29,7 @@ type EventType = {
 };
 
 const RSVPDetails = styled("div")`
-  border: 1px black;
+  padding: 60px;
 `;
 
 const HeaderPlaceholder = styled("div")`
@@ -47,6 +49,7 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
   const [guestList, setGuestList] = useState<any>([]);
 
   const getPossibleGuests = async (invitationName: string) => {
+    console.log("Here in possible guests, get names?");
     const formattedName = invitationName
       .toLowerCase()
       .replace(/ and /g, " ")
@@ -159,20 +162,40 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
     });
   };
 
+  const ceremonyClick = () => {
+    props.history.push("/ceremony");
+  };
+  const detailsClick = () => {
+    props.history.push("/details");
+  };
+  const handleRouteChange = () => {
+    props.history.push("/");
+  };
+
   return (
-    <RSVPDetails>
-      <HeaderPlaceholder />
-      {!guestList.length && (
-        <EnterFirstName onNextButton={getPossibleGuests}></EnterFirstName>
-      )}
-      {guestList.length && (
-        <AttendanceDetails
-          guestList={guestList}
-          onSave={onSaveRSVP}
-        ></AttendanceDetails>
-      )}
-    </RSVPDetails>
+    <div className="App">
+      <StickyHeader
+        ceremonyClick={ceremonyClick}
+        venueClick={detailsClick}
+        detailsClick={handleRouteChange}
+        registryClick={handleRouteChange}
+        visibleSection={"rsvp"}
+        rsvpClick={handleRouteChange}
+        homeClick={handleRouteChange}
+      />
+      <RSVPDetails>
+        {!guestList.length && (
+          <EnterFirstName onNextButton={getPossibleGuests}></EnterFirstName>
+        )}
+        {!!guestList.length && (
+          <AttendanceDetails
+            guestList={guestList}
+            onSave={onSaveRSVP}
+          ></AttendanceDetails>
+        )}
+      </RSVPDetails>
+    </div>
   );
 };
 
-export default RSVPContainer;
+export default withRouter(RSVPContainer);

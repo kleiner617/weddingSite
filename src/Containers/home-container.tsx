@@ -5,14 +5,12 @@ import MenuHeader from "../Components/desktop/menu-header";
 import PhotoHeader from "../Components/desktop/photo-header-large";
 import FAQContainer from "./faq-container";
 import RegistryContainer from "./registry-container";
-import RSVPContainer from "./rsvp-container";
 import CeremonyContainer from "./ceremony-container";
-import Sticky from "react-sticky-el";
-import GettingThere, { GettingThereContainer } from "./getting-there-container";
+import StickyHeader from "../Components/desktop/sticky-header";
 import NameHeaderDesktop from "../Components/desktop/name-header-desktop";
 import Footer from "../Components/footer";
 import CountdownComponent from "../Components/countdown-component";
-import { Link } from "react-router-dom";
+import GettingThereContainer from "../Containers/getting-there-container";
 
 type Props = {};
 
@@ -87,6 +85,9 @@ const HomeContainer = () => {
     };
   }, [visibleSection]);
 
+  const scrollToHome = () => {
+    scrollTo(headerRef.current);
+  };
   const scrollToCeremony = () => {
     scrollTo(ceremonyRef.current);
   };
@@ -111,78 +112,21 @@ const HomeContainer = () => {
             registryClick={scrollToRegistry}
             visibleSection={visibleSection}
             rsvpClick={scrollToRegistry}
+            homeClick={scrollToHome}
           ></MenuHeader>
           <PhotoHeader />
           <NameHeaderDesktop />
           <CountdownComponent isMobile={true} />
         </div>
-        <div
-          className={`sticky ${
-            visibleSection === "ceremony" ||
-            visibleSection === "getting-there" ||
-            visibleSection === "faq" ||
-            visibleSection === "registry"
-              ? "show"
-              : "hide"
-          }`}
-        >
-          <div className="header" ref={headerRef}>
-            <button
-              type="button"
-              className={`header_link ${
-                visibleSection === "ceremony" ? "selected" : ""
-              }`}
-              onClick={() => {
-                scrollTo(ceremonyRef.current);
-              }}
-            >
-              Ceremony
-            </button>
-            <button
-              type="button"
-              className={`header_link ${
-                visibleSection === "getting-there" ? "selected" : ""
-              }`}
-              onClick={() => {
-                scrollTo(gettingThereRef.current);
-              }}
-            >
-              Venue
-            </button>
-
-            <HeartImg
-              src={require("../Content/Images/heart_script.png")}
-              onClick={() => {
-                scrollTo(headerRef.current);
-              }}
-            ></HeartImg>
-            <button
-              type="button"
-              className={`header_link ${
-                visibleSection === "faq" ? "selected" : ""
-              }`}
-              onClick={() => {
-                scrollTo(faqRef.current);
-              }}
-            >
-              Details
-            </button>
-            <button
-              type="button"
-              className={`header_link ${
-                visibleSection === "registry" ? "selected" : ""
-              }`}
-              onClick={() => {
-                scrollTo(registryRef.current);
-              }}
-            >
-              Registry
-            </button>
-
-            <Link to={`/rsvp`}> RSVP </Link>
-          </div>
-        </div>
-
+        <StickyHeader
+          ceremonyClick={scrollToCeremony}
+          venueClick={scrollToVenue}
+          detailsClick={scrollToDetails}
+          registryClick={scrollToRegistry}
+          visibleSection={visibleSection}
+          rsvpClick={scrollToRegistry}
+          homeClick={scrollToHome}
+        />
         <div className="section" id="ceremony" ref={ceremonyRef}>
           <CeremonyContainer></CeremonyContainer>
         </div>
