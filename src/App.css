@@ -107,3 +107,24 @@ a6b691
   width: 60%;
   font-size: 24px;
 }
+
+.guest-map-checkbox {
+  background-color: hotpink;
+}
+
+.additional-details {
+  margin: auto;
+  width: 30%;
+}
+
+.additional-details-label {
+  margin-top: 40px;
+  font-size: 28px;
+}
+
+.checkbox-container {
+  font-size: 24px;
+  width: 100px;
+  display: inline-block;
+  margin-top: 15px;
+}

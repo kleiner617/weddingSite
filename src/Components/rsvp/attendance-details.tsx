@@ -7,12 +7,14 @@ import React, {
 import styled from "@emotion/styled";
 import { Checkbox } from "../checkbox";
 import { GuestListType } from "../../Types";
+import { Button, Form } from "react-bootstrap";
 
 // import { EnterFirstName } from "../Components/rsvp/enter-first-name";
 
 type Props = {
   guestList: GuestListType[];
   onSave: (details: any) => void;
+  isMobile?: boolean;
 };
 
 type plusOneState = {
@@ -27,9 +29,25 @@ const RSVPDetails = styled("div")`
   border: 1px black;
 `;
 
-const ResponseSection = styled("div")``;
+const ResponseSection = styled("div")`
+  display: grid;
+  grid-template-columns: 2fr 0.5fr 0.5fr;
+  margin: 10px auto;
+  font-size: 24px;
+`;
 
-const ResponseHeader = styled("div")``;
+const ResponseHeader = styled("div")`
+  font-size: 36px;
+`;
+
+const DetailsHeader = styled("div")`
+  font-size: 24px;
+  margin-top: 60px;
+`;
+
+const CheckboxSection = styled("div")`
+  display: inline-block;
+`;
 
 const reducer = (state: any, action: any) => {
   return {
@@ -53,7 +71,8 @@ const PlusOneSection = (
   return (
     <div>
       <div>
-        Will you be bringing a plus one?
+        <DetailsHeader>Will you be bringing a plus one?</DetailsHeader>
+
         <Checkbox
           name="plusOneCheckbox"
           value={plusOneState.isAttending === 1}
@@ -69,38 +88,69 @@ const PlusOneSection = (
           isDisabled={false}
         />
       </div>
-      {!!plusOneState.isAttending && (
+      {plusOneState.isAttending !== -1 && plusOneState.isAttending !== 0 && (
         <div>
-          <label htmlFor="guestFirstName">First Name</label>
-          <input
-            type="text"
-            id="guestFirstName"
-            name="guestFirstName"
-            onBlur={firstNameBlur}
-          />
-          <label htmlFor="guestFirstName">Last Name</label>
-          <input
-            type="text"
-            id="guestLastName"
-            name="guestLastName"
-            onBlur={lastNameBlur}
-          />
+          <Form>
+            <Form.Group controlId="formFirstName">
+              <Form.Label>First Name </Form.Label>
+              <Form.Control
+                type="text"
+                value={plusOneState.firstName}
+                onChange={firstNameBlur}
+                style={{
+                  width: "30%",
+                  margin: "20px auto"
+                }}
+              />
+              <Form.Label>Last Name </Form.Label>
+              <Form.Control
+                type="text"
+                id="guestLastName"
+                onChange={lastNameBlur}
+                value={plusOneState.lastName}
+                style={{
+                  width: "30%",
+                  margin: "20px auto"
+                }}
+              />
+            </Form.Group>
+            <Form.Group controlId="formLastName"></Form.Group>
+          </Form>
         </div>
       )}
     </div>
   );
 };
 
-const AdditionalDetailsSection = (onBlur: (val: string) => void) => {
-  const infoBlur = (e: any) => {
-    onBlur(e.currentTarget.value || "");
+const AdditionalDetailsSection = (
+  additionalInfo: string,
+  onBlur: (val: string) => void,
+  isMobile?: boolean
+) => {
+  const infoChange = (e: any) => {
+    onBlur(e.target.value || "");
   };
 
   return (
-    <div>
-      <label htmlFor="additionalInfo">Anything else we need to know?</label>
-      <input type="text" name="additionalInfo" onBlur={infoBlur}></input>
-    </div>
+    <Form
+      className="additional-details"
+      style={{
+        width: `${isMobile ? "100%" : "30%"}`
+      }}
+    >
+      <Form.Group controlId="exampleForm.ControlTextarea1">
+        <Form.Label className="additional-details-label">
+          Anything else we need to know?
+        </Form.Label>
+        <Form.Control
+          as="textarea"
+          value={additionalInfo}
+          rows="3"
+          onChange={infoChange}
+        />
+      </Form.Group>
+      {/* <input type="text" name="additionalInfo" onBlur={infoBlur}></input> */}
+    </Form>
   );
 };
 
@@ -239,27 +289,31 @@ export const AttendanceDetails: FunctionComponent<Props> = props => {
       <ResponseHeader> Will you be attending?</ResponseHeader>
       {guestList.map((guest: any) => {
         return (
-          <ResponseSection>
-            <div>
-              {guest.firstName}
-              {guest.lastName}
+          <ResponseSection
+            style={{
+              width: `${props.isMobile ? "100%" : "50%"}`,
+              textAlign: "left"
+            }}
+          >
+            <div style={{ alignSelf: "center" }}>
+              {guest.firstName} {guest.lastName}
             </div>
-            <div>
-              <Checkbox
-                name={`${guest.id}`}
-                value={guestListState[`${guest.id}`] === 1}
-                onChange={onCheckboxChange}
-                label={"yes"}
-                isDisabled={false}
-              />
-              <Checkbox
-                name={`${guest.id}`}
-                value={guestListState[`${guest.id}`] === 0}
-                onChange={onCheckboxChange}
-                label={"no"}
-                isDisabled={false}
-              />
-            </div>
+            <Checkbox
+              name={`${guest.id}`}
+              value={guestListState[`${guest.id}`] === 1}
+              onChange={onCheckboxChange}
+              label={"yes"}
+              isDisabled={false}
+              id="guest-map-checkbox"
+            />
+            <Checkbox
+              name={`${guest.id}`}
+              value={guestListState[`${guest.id}`] === 0}
+              onChange={onCheckboxChange}
+              label={"no"}
+              isDisabled={false}
+              id="guest-map-checkbox"
+            />
           </ResponseSection>
         );
       })}
@@ -271,15 +325,26 @@ export const AttendanceDetails: FunctionComponent<Props> = props => {
           onPlusOneNameBlur
         )}
 
-      {AdditionalDetailsSection(onAdditionalInformationBlur)}
-      <button
-        type="submit"
-        style={{ display: "block" }}
+      {AdditionalDetailsSection(
+        additionalInformation,
+        onAdditionalInformationBlur,
+        props.isMobile
+      )}
+
+      <Button
+        variant="outline-primary"
+        type="button"
         disabled={!submitDisabled}
+        style={{
+          width: "100px",
+          fontSize: "24px",
+          float: "right",
+          marginTop: "100px"
+        }}
         onClick={submitNames}
       >
         Submit
-      </button>
+      </Button>
     </RSVPDetails>
   );
 };

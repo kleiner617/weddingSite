@@ -18,7 +18,12 @@ const App = () => {
     <div>
       {/* <Switch> */}
       <Route exact path="/" component={whichContainer} />
-      <Route path="/rsvp" component={RSVPContainer} />
+      <Route
+        path="/rsvp"
+        render={(props: any) => (
+          <RSVPContainer isMobile={!isDesktop && !isTablet} />
+        )}
+      />
       {/* </Switch> */}
     </div>
   );

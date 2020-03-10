@@ -104,6 +104,7 @@ type Props = {
   name: string;
   value: boolean;
   label: string;
+  id?: string;
   onChange: (
     value: boolean,
     name: { checkboxID: string; checkboxName: string }
@@ -128,18 +129,11 @@ export const Checkbox: FunctionComponent<Props> = props => {
         disabled={false}
         type={"checkbox"}
         name={props.name}
-        id={props.name}
+        id={props.id}
         checked={props.value}
         onChange={onChecked}
+        label={props.label}
       />
-      <label
-        //   disabled={this.props.isDisabled}
-        // checked={props.value}
-        htmlFor={props.name}
-        // size={props.size}
-      >
-        {props.label}
-      </label>
     </div>
   );
 };

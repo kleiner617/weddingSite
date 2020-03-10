@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 
 type Props = {
   onNextButton: (invitationName: string) => void;
+  isMobile?: boolean;
 };
 
 const RSVPDetails = styled("div")`
@@ -21,9 +22,9 @@ export const EnterFirstName: FunctionComponent<Props> = props => {
   const [enableButton, setEnableButton] = useState<boolean>(false);
 
   const onInvitationNameChange = (e: any) => {
+    setInvitationName(e.currentTarget.value);
     if (e.currentTarget.value && e.currentTarget.value.length > 0) {
       setEnableButton(true);
-      setInvitationName(e.currentTarget.value);
     } else {
       setEnableButton(false);
     }
@@ -32,6 +33,8 @@ export const EnterFirstName: FunctionComponent<Props> = props => {
   const submitName = () => {
     props.onNextButton(invitationName);
   };
+
+  const widthOfInput = props.isMobile ? "90%" : "60%";
 
   return (
     <RSVPDetails id="rsvp">
@@ -45,7 +48,7 @@ export const EnterFirstName: FunctionComponent<Props> = props => {
             placeholder="Mr. and Mrs. John Doe"
             onChange={onInvitationNameChange}
             style={{
-              width: "60%",
+              width: `${widthOfInput}`,
               fontSize: "24px",
               margin: "20px auto"
             }}

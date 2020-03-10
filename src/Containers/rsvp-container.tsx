@@ -28,9 +28,7 @@ type EventType = {
   };
 };
 
-const RSVPDetails = styled("div")`
-  padding: 60px;
-`;
+const RSVPDetails = styled("div")``;
 
 const HeaderPlaceholder = styled("div")`
   height: 100px;
@@ -173,23 +171,37 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
   };
 
   return (
-    <div className="App">
-      <StickyHeader
-        ceremonyClick={ceremonyClick}
-        venueClick={detailsClick}
-        detailsClick={handleRouteChange}
-        registryClick={handleRouteChange}
-        visibleSection={"rsvp"}
-        rsvpClick={handleRouteChange}
-        homeClick={handleRouteChange}
-      />
-      <RSVPDetails>
+    <div
+      style={{
+        textAlign: "center",
+        fontFamily: "'Open Sans Condensed', sans-serif"
+      }}
+    >
+      {!props.isMobile && (
+        <StickyHeader
+          ceremonyClick={ceremonyClick}
+          venueClick={detailsClick}
+          detailsClick={handleRouteChange}
+          registryClick={handleRouteChange}
+          visibleSection={"rsvp"}
+          rsvpClick={handleRouteChange}
+          homeClick={handleRouteChange}
+        />
+      )}
+
+      <RSVPDetails
+        style={{ padding: `${props.isMobile ? "30px 15px" : "60px"}` }}
+      >
         {!guestList.length && (
-          <EnterFirstName onNextButton={getPossibleGuests}></EnterFirstName>
+          <EnterFirstName
+            isMobile={props.isMobile}
+            onNextButton={getPossibleGuests}
+          ></EnterFirstName>
         )}
         {!!guestList.length && (
           <AttendanceDetails
             guestList={guestList}
+            isMobile={props.isMobile}
             onSave={onSaveRSVP}
           ></AttendanceDetails>
         )}
