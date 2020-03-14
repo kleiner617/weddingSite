@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useState, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import styled from "@emotion/styled";
 // import { Form, Button } from "react-bootstrap";
@@ -13,6 +13,7 @@ const RSVPDetails = styled("div")`
 `;
 const FormStyle = styled("div")`
   margin-top: 40px;
+  position: relative;
 `;
 const RSVPQuestion = styled("div")`
   margin: auto;
@@ -32,6 +33,8 @@ export const EnterFirstNameMobile: FunctionComponent<Props> = props => {
   const [invitationName, setInvitationName] = useState<string>("");
   const [enableButton, setEnableButton] = useState<boolean>(false);
 
+  const formRef = useRef(null);
+
   const onInvitationNameChange = (e: any) => {
     setInvitationName(e.currentTarget.value);
     if (e.currentTarget.value && e.currentTarget.value.length > 0) {
@@ -41,16 +44,34 @@ export const EnterFirstNameMobile: FunctionComponent<Props> = props => {
     }
   };
 
+  const getDimensions = (ele: any) => {
+    const { height } = ele.getBoundingClientRect();
+    const offsetTop = ele.offsetTop;
+    const offsetBottom = offsetTop + height;
+
+    return {
+      height,
+      offsetTop,
+      offsetBottom
+    };
+  };
+
   const submitName = () => {
     props.onNextButton(invitationName);
   };
-
   const widthOfInput = "90%";
+  let offsetOfTop = 100;
+
+  if (formRef.current) {
+    const { offsetTop } = getDimensions(formRef.current);
+    offsetOfTop = offsetTop;
+  }
+  const height = window.innerHeight - offsetOfTop;
 
   return (
     <RSVPDetails id="rsvp">
       <RSVPQuestion>Please Enter the Name on your invitation</RSVPQuestion>
-      <FormStyle>
+      <FormStyle style={{ height: height }} ref={formRef}>
         <Form onSubmit={submitName}>
           <Form.Group controlId="formBasicText">
             <Form.Control
@@ -71,23 +92,23 @@ export const EnterFirstNameMobile: FunctionComponent<Props> = props => {
               last name.
             </ErrorMessage>
           )}
-          <Button
-            variant="outline-primary"
-            type="button"
-            disabled={!enableButton}
-            style={{
-              position: "fixed",
-              bottom: "0",
-              width: "100px",
-              fontSize: "24px",
-              right: "30px",
-              marginBottom: "40px"
-            }}
-            onClick={submitName}
-          >
-            Next
-          </Button>
         </Form>
+        <Button
+          variant="outline-primary"
+          type="button"
+          disabled={!enableButton}
+          style={{
+            position: "absolute",
+            bottom: "0",
+            width: "100px",
+            fontSize: "24px",
+            right: "30px",
+            marginBottom: "40px"
+          }}
+          onClick={submitName}
+        >
+          Next
+        </Button>
       </FormStyle>
     </RSVPDetails>
   );
