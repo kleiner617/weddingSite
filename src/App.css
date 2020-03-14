@@ -141,10 +141,12 @@ input[type="checkbox"] {
 .custom-toast-notification {
   z-index: 9999999;
   width: 500px;
+  margin-left: -100px;
 }
 
 .mobile-custom-toast-notification {
   z-index: 9999999;
+  margin: auto;
 }
 
 .custom-toast-size {
