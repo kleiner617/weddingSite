@@ -50,10 +50,6 @@ const DetailsHeader = styled("div")`
   margin-top: 60px;
 `;
 
-const CheckboxSection = styled("div")`
-  display: inline-block;
-`;
-
 const reducer = (state: any, action: any) => {
   return {
     ...state,
@@ -84,6 +80,7 @@ const PlusOneSection = (
           onChange={onChange}
           label={"yes"}
           isDisabled={false}
+          id={"plusone-yes"}
         />
         <Checkbox
           name="plusOneCheckbox"
@@ -91,6 +88,7 @@ const PlusOneSection = (
           onChange={onChange}
           label={"no"}
           isDisabled={false}
+          id={"plusone-no"}
         />
       </div>
       {plusOneState.isAttending !== -1 && plusOneState.isAttending !== 0 && (
@@ -144,17 +142,16 @@ const AdditionalDetailsSection = (
       }}
     >
       <Form.Group controlId="exampleForm.ControlTextarea1">
-        <Form.Label
-          className="additional-details-label"
-          placeholder="any special requests, food allergies, etc..."
-        >
+        <Form.Label className="additional-details-label">
           Anything else we need to know?
         </Form.Label>
         <Form.Control
+          style={{ fontSize: "20px" }}
           as="textarea"
           value={additionalInfo}
           rows="3"
           onChange={infoChange}
+          placeholder="Let us know about any special requests, food allergies, etc.."
         />
       </Form.Group>
     </Form>
@@ -316,7 +313,7 @@ export const AttendanceDetailsMobile: FunctionComponent<Props> = props => {
                 onChange={onCheckboxChange}
                 label={"yes"}
                 isDisabled={false}
-                id={`${guest.id}`}
+                id={`yes-${guest.id}`}
               />
               <Checkbox
                 name={`${guest.id}`}
@@ -324,7 +321,7 @@ export const AttendanceDetailsMobile: FunctionComponent<Props> = props => {
                 onChange={onCheckboxChange}
                 label={"no"}
                 isDisabled={false}
-                id={`${guest.id}`}
+                id={`no-${guest.id}`}
               />
             </div>
           </ResponseSection>

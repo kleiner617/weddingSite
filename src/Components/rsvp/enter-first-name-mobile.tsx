@@ -12,7 +12,6 @@ const RSVPDetails = styled("div")`
 `;
 const FormStyle = styled("div")`
   margin-top: 40px;
-  /* font-size: 30px; */
 `;
 const RSVPQuestion = styled("div")`
   margin: auto;

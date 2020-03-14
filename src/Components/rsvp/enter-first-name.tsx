@@ -8,10 +8,11 @@ type Props = {
 };
 
 const RSVPDetails = styled("div")`
-  height: 400px;
-  border: 1px black;
+  margin-top: 40px;
 `;
-
+const FormStyle = styled("div")`
+  margin-top: 40px;
+`;
 const RSVPQuestion = styled("div")`
   font-size: 36px;
 `;
@@ -38,36 +39,37 @@ export const EnterFirstName: FunctionComponent<Props> = props => {
   return (
     <RSVPDetails id="rsvp">
       <RSVPQuestion>Please Enter the Name on your invitation</RSVPQuestion>
-
-      <Form onSubmit={submitName}>
-        <Form.Group controlId="formBasicText">
-          <Form.Control
-            type="text"
-            value={invitationName}
-            placeholder="Mr. and Mrs. John Doe"
-            onChange={onInvitationNameChange}
+      <FormStyle>
+        <Form onSubmit={submitName}>
+          <Form.Group controlId="formBasicText">
+            <Form.Control
+              type="text"
+              value={invitationName}
+              placeholder="Mr. and Mrs. John Doe"
+              onChange={onInvitationNameChange}
+              style={{
+                width: `${widthOfInput}`,
+                fontSize: "24px",
+                margin: "20px auto"
+              }}
+            />
+          </Form.Group>
+          <Button
+            variant="outline-primary"
+            type="button"
+            disabled={!enableButton}
             style={{
-              width: `${widthOfInput}`,
+              width: "100px",
               fontSize: "24px",
-              margin: "20px auto"
+              float: "right",
+              marginTop: "100px"
             }}
-          />
-        </Form.Group>
-        <Button
-          variant="outline-primary"
-          type="button"
-          disabled={!enableButton}
-          style={{
-            width: "100px",
-            fontSize: "24px",
-            float: "right",
-            marginTop: "100px"
-          }}
-          onClick={submitName}
-        >
-          Next
-        </Button>
-      </Form>
+            onClick={submitName}
+          >
+            Next
+          </Button>
+        </Form>
+      </FormStyle>
     </RSVPDetails>
   );
 };

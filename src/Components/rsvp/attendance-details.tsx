@@ -23,16 +23,14 @@ type plusOneState = {
   isAttending: number;
 };
 
-const RSVPDetails = styled("div")`
-  height: 400px;
-  border: 1px black;
-`;
+const RSVPDetails = styled("div")``;
 
 const ResponseSection = styled("div")`
   display: grid;
-  grid-template-columns: 2fr 0.5fr 0.5fr;
+  grid-template-columns: 2fr 1fr;
   margin: 10px auto;
   font-size: 24px;
+  padding-left: 40px;
 `;
 
 const ResponseHeader = styled("div")`
@@ -44,8 +42,12 @@ const DetailsHeader = styled("div")`
   margin-top: 60px;
 `;
 
-const CheckboxSection = styled("div")`
-  display: inline-block;
+const PlusOneGrid = styled("div")`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
+  width: 50%;
+  margin: auto;
 `;
 
 const reducer = (state: any, action: any) => {
@@ -78,6 +80,7 @@ const PlusOneSection = (
           onChange={onChange}
           label={"yes"}
           isDisabled={false}
+          id={"plusone-yes"}
         />
         <Checkbox
           name="plusOneCheckbox"
@@ -85,36 +88,38 @@ const PlusOneSection = (
           onChange={onChange}
           label={"no"}
           isDisabled={false}
+          id="plusone-no"
         />
       </div>
       {plusOneState.isAttending !== -1 && plusOneState.isAttending !== 0 && (
         <div>
           <Form>
-            <Form.Group controlId="formFirstName">
-              <Form.Label>First Name </Form.Label>
-              <Form.Control
-                type="text"
-                value={plusOneState.firstName}
-                onChange={firstNameBlur}
-                style={{
-                  width: "30%",
-                  margin: "20px auto"
-                }}
-              />
-              <Form.Label>Last Name </Form.Label>
-              <Form.Control
-                type="text"
-                id="guestLastName"
-                onChange={lastNameBlur}
-                value={plusOneState.lastName}
-                style={{
-                  width: "30%",
-                  margin: "20px auto"
-                }}
-              />
-            </Form.Group>
-            <Form.Group controlId="formLastName"></Form.Group>
-          </Form>
+            <PlusOneGrid>
+              <Form.Group controlId="formFirstName">
+                <div>First Name </div>
+                <Form.Control
+                  type="text"
+                  value={plusOneState.firstName}
+                  onChange={firstNameBlur}
+                  style={{
+                    margin: "20px 10px"
+                  }}
+                />
+              </Form.Group>
+              <Form.Group controlId="formLastName">
+                <div>Last Name </div>
+                <Form.Control
+                  type="text"
+                  id="guestLastName"
+                  onChange={lastNameBlur}
+                  value={plusOneState.lastName}
+                  style={{
+                    margin: "20px auto"
+                  }}
+                />
+              </Form.Group>
+            </PlusOneGrid>
+          </Form>{" "}
         </div>
       )}
     </div>
@@ -133,7 +138,7 @@ const AdditionalDetailsSection = (
     <Form
       className="additional-details"
       style={{
-        width: "30%"
+        width: "50%"
       }}
     >
       <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -141,13 +146,14 @@ const AdditionalDetailsSection = (
           Anything else we need to know?
         </Form.Label>
         <Form.Control
+          style={{ fontSize: "24px" }}
           as="textarea"
           value={additionalInfo}
           rows="3"
           onChange={infoChange}
+          placeholder="Let us know about any special requests, food allergies, etc.."
         />
       </Form.Group>
-      {/* <input type="text" name="additionalInfo" onBlur={infoBlur}></input> */}
     </Form>
   );
 };
@@ -290,28 +296,30 @@ export const AttendanceDetails: FunctionComponent<Props> = props => {
           <ResponseSection
             style={{
               width: "50%",
-              textAlign: "center"
+              textAlign: "left"
             }}
           >
             <div style={{ alignSelf: "center" }}>
               {guest.firstName} {guest.lastName}
             </div>
-            <Checkbox
-              name={`${guest.id}`}
-              value={guestListState[`${guest.id}`] === 1}
-              onChange={onCheckboxChange}
-              label={"yes"}
-              isDisabled={false}
-              id="guest-map-checkbox"
-            />
-            <Checkbox
-              name={`${guest.id}`}
-              value={guestListState[`${guest.id}`] === 0}
-              onChange={onCheckboxChange}
-              label={"no"}
-              isDisabled={false}
-              id="guest-map-checkbox"
-            />
+            <div>
+              <Checkbox
+                name={`${guest.id}`}
+                value={guestListState[`${guest.id}`] === 1}
+                onChange={onCheckboxChange}
+                label={"yes"}
+                isDisabled={false}
+                id={`yes-${guest.id}`}
+              />
+              <Checkbox
+                name={`${guest.id}`}
+                value={guestListState[`${guest.id}`] === 0}
+                onChange={onCheckboxChange}
+                label={"no"}
+                isDisabled={false}
+                id={`no-${guest.id}`}
+              />
+            </div>
           </ResponseSection>
         );
       })}
