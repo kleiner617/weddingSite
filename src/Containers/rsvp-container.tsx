@@ -160,16 +160,6 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
     });
   };
 
-  const ceremonyClick = () => {
-    props.history.push("/ceremony");
-  };
-  const detailsClick = () => {
-    props.history.push("/details");
-  };
-  const handleRouteChange = () => {
-    props.history.push("/");
-  };
-
   return (
     <div
       style={{
@@ -177,17 +167,7 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
         fontFamily: "'Open Sans Condensed', sans-serif"
       }}
     >
-      {!props.isMobile && (
-        <StickyHeader
-          ceremonyClick={ceremonyClick}
-          venueClick={detailsClick}
-          detailsClick={handleRouteChange}
-          registryClick={handleRouteChange}
-          visibleSection={"rsvp"}
-          rsvpClick={handleRouteChange}
-          homeClick={handleRouteChange}
-        />
-      )}
+      {!props.isMobile && <StickyHeader visibleSection={"rsvp"} />}
 
       <RSVPDetails
         style={{ padding: `${props.isMobile ? "30px 15px" : "60px"}` }}

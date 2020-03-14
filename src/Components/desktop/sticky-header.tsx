@@ -3,13 +3,7 @@ import styled from "@emotion/styled";
 // import { Link } from "react-router-dom";
 import { HashLink as Link } from "react-router-hash-link";
 type Props = {
-  ceremonyClick: () => void;
-  venueClick: () => void;
-  detailsClick: () => void;
   visibleSection: string;
-  registryClick: () => void;
-  rsvpClick: () => void;
-  homeClick: () => void;
 };
 
 const TopHeader = styled("div")`
@@ -37,14 +31,7 @@ const HeartImg = styled("img")`
   margin-top: -10px;
 `;
 
-const StickyHeader = ({
-  ceremonyClick,
-  venueClick,
-  detailsClick,
-  registryClick,
-  homeClick,
-  visibleSection
-}: Props) => {
+const StickyHeader = ({ visibleSection }: Props) => {
   return (
     <div
       className={`sticky ${
@@ -58,7 +45,7 @@ const StickyHeader = ({
       }`}
     >
       <div className="header">
-        <Link smooth to="/ceremony#ceremony">
+        <Link smooth to="/#ceremony">
           <button
             type="button"
             className={`header_link ${
@@ -69,41 +56,39 @@ const StickyHeader = ({
           </button>
         </Link>
 
-        <Link smooth to="/venue#venue">
+        <Link smooth to="/#venue">
           <button
             type="button"
             className={`header_link ${
               visibleSection === "getting-there" ? "selected" : ""
             }`}
-            onClick={venueClick}
           >
             Venue
           </button>
         </Link>
 
-        <HeartImg
-          src={require("../../Content/Images/heart_script_black.png")}
-          onClick={homeClick}
-        ></HeartImg>
+        <Link smooth to="/">
+          <HeartImg
+            src={require("../../Content/Images/heart_script_black.png")}
+          ></HeartImg>
+        </Link>
 
-        <Link smooth to="/details#details">
+        <Link smooth to="/#details">
           <button
             type="button"
             className={`header_link ${
               visibleSection === "faq" ? "selected" : ""
             }`}
-            onClick={detailsClick}
           >
             Details
           </button>
         </Link>
-        <Link smooth to="/registry#registry">
+        <Link smooth to="/#registry">
           <button
             type="button"
             className={`header_link ${
               visibleSection === "registry" ? "selected" : ""
             }`}
-            onClick={registryClick}
           >
             Registry
           </button>

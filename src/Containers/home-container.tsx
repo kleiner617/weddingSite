@@ -63,7 +63,7 @@ const HomeContainer = () => {
     console.log("this is the first use Effect", visibleSection);
     const handleScroll = () => {
       const { height: headerHeight } = getDimensions(headerRef.current);
-      const scrollPosition = window.scrollY + 90;
+      const scrollPosition = window.scrollY + 82.76;
 
       const selected = sectionRefs.find(({ section, ref }) => {
         const ele = ref.current;
@@ -87,47 +87,31 @@ const HomeContainer = () => {
     };
   }, [visibleSection]);
 
-  const scrollToHome = () => {
-    scrollTo(headerRef.current);
-  };
-  const scrollToCeremony = () => {
-    scrollTo(ceremonyRef.current);
-  };
-  const scrollToVenue = () => {
-    scrollTo(gettingThereRef.current);
-  };
-  const scrollToDetails = () => {
-    scrollTo(faqRef.current);
-  };
-  const scrollToRegistry = () => {
-    scrollTo(registryRef.current);
-  };
-
   return (
     <div className="App">
       <div className="content">
         <div className="section" id="header" ref={headerRef}>
           <MenuHeader
-            ceremonyClick={scrollToCeremony}
-            venueClick={scrollToVenue}
-            detailsClick={scrollToDetails}
-            registryClick={scrollToRegistry}
+            // ceremonyClick={scrollToCeremony}
+            // venueClick={scrollToVenue}
+            // detailsClick={scrollToDetails}
+            // registryClick={scrollToRegistry}
             visibleSection={visibleSection}
-            rsvpClick={scrollToRegistry}
-            homeClick={scrollToHome}
+            // rsvpClick={scrollToRegistry}
+            // homeClick={scrollToHome}
           ></MenuHeader>
           <PhotoHeader />
           <NameHeaderDesktop />
           <CountdownComponent isMobile={true} />
         </div>
         <StickyHeader
-          ceremonyClick={scrollToCeremony}
-          venueClick={scrollToVenue}
-          detailsClick={scrollToDetails}
-          registryClick={scrollToRegistry}
+          // ceremonyClick={scrollToCeremony}
+          // venueClick={scrollToVenue}
+          // detailsClick={scrollToDetails}
+          // registryClick={scrollToRegistry}
           visibleSection={visibleSection}
-          rsvpClick={scrollToRegistry}
-          homeClick={scrollToHome}
+          // rsvpClick={scrollToRegistry}
+          // homeClick={scrollToHome}
         />
         <div className="section" id="ceremony" ref={ceremonyRef}>
           <CeremonyContainer></CeremonyContainer>

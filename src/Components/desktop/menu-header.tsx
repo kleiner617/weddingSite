@@ -4,13 +4,7 @@ import styled from "@emotion/styled";
 import { HashLink as Link } from "react-router-hash-link";
 
 type Props = {
-  ceremonyClick: () => void;
-  venueClick: () => void;
-  detailsClick: () => void;
   visibleSection: string;
-  registryClick: () => void;
-  rsvpClick: () => void;
-  homeClick: () => void;
 };
 
 const TopHeader = styled("div")`
@@ -42,25 +36,27 @@ const MenuHeader = (props: Props) => {
   return (
     <div>
       <TopHeader>
-        <Link to="/ceremony#ceremony" smooth>
+        <Link to="/#ceremony" smooth>
           <TopHeaderButton className="top-button">Ceremony</TopHeaderButton>
         </Link>
-        <Link to="/venue#venue" smooth>
+        <Link to="/venue" smooth>
           <TopHeaderButton className="top-button">Venue</TopHeaderButton>{" "}
         </Link>
+        <Link to="/" smooth>
+          <HeartImg
+            src={require("../../Content/Images/heart_script_black.png")}
+          ></HeartImg>
+        </Link>
 
-        <HeartImg
-          src={require("../../Content/Images/heart_script_black.png")}
-        ></HeartImg>
-        <Link to="/details#details" smooth>
+        <Link to="/#details" smooth>
           <TopHeaderButton className="top-button">Details</TopHeaderButton>{" "}
         </Link>
 
-        <Link to="/registry#registry" smooth>
+        <Link to="/#registry" smooth>
           <TopHeaderButton className="top-button">Registry</TopHeaderButton>{" "}
         </Link>
 
-        <Link to="/rsvp#rsvp" smooth>
+        <Link to="/#rsvp" smooth>
           <TopHeaderButton>
             <Link to={`/rsvp`}> RSVP </Link>
           </TopHeaderButton>{" "}

@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import { slide as Menu } from "react-burger-menu";
 import { NavHashLink as NavLink } from "react-router-hash-link";
+import { HashLink as Link } from "react-router-hash-link";
 
 type PropsType = {
   allRefs: any;
@@ -112,45 +113,51 @@ export class MobileNavMenu extends React.Component<PropsType, StateType> {
           </i>
         }
       >
-        <NavLink
+        <Link
           smooth
-          to="/cermony#ceremony"
+          to="/#ceremony"
           activeClassName="active"
           onClick={this.toggleMenu}
         >
           Ceremony
-        </NavLink>
+        </Link>
 
-        <NavLink
-          to="/getting-there#getting-there"
+        <Link
+          smooth
+          to="/#venue"
           activeClassName="active"
           onClick={this.toggleMenu}
         >
           Venue
-        </NavLink>
-        <NavLink
+        </Link>
+
+        <Link
           smooth
-          to="/faq#faq"
+          to="/#details"
           activeClassName="active"
           onClick={this.toggleMenu}
         >
           Details
-        </NavLink>
-        <NavLink
-          to="/registry#registry"
+        </Link>
+
+        <Link
+          smooth
+          to="/#registry"
           activeClassName="active"
           onClick={this.toggleMenu}
         >
           Registry
-        </NavLink>
+        </Link>
 
-        <HeartImg
-          src={require("../../Content/Images/heart_script_black.png")}
-        ></HeartImg>
-
-        {/* <NavLink to="/rsvp" activeClassName="active" onClick={this.toggleMenu}>
+        <Link to="/rsvp" activeClassName="active" onClick={this.toggleMenu}>
           RSVP
-        </NavLink> */}
+        </Link>
+
+        <Link smooth to="/" activeClassName="active" onClick={this.toggleMenu}>
+          <HeartImg
+            src={require("../../Content/Images/heart_script_black.png")}
+          ></HeartImg>
+        </Link>
       </Menu>
     );
   }

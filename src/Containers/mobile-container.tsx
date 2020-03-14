@@ -110,18 +110,16 @@ const MobileContainer = () => {
         <div className="section" id="ceremony" ref={ceremonyRef}>
           <CeremonyContainer isMobile={true}></CeremonyContainer>
         </div>
-        <div className="section" id="getting-there" ref={gettingThereRef}>
+        <div className="section" id="venue" ref={gettingThereRef}>
           <GettingThereContainer isMobile={true}></GettingThereContainer>
         </div>
-        <div className="section" id="faq" ref={faqRef}>
+        <div className="section" id="details" ref={faqRef}>
           <FAQContainer isMobile={true}></FAQContainer>
         </div>
 
         <div className="section" id="registry" ref={registryRef}>
           <RegistryContainer isMobile={true}></RegistryContainer>
         </div>
-
-        {/* <RSVPContainer></RSVPContainer> */}
       </div>
       <Footer isMobile={true}></Footer>
     </div>

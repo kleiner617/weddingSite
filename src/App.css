@@ -40,6 +40,7 @@ a.active {
   left: 0;
   right: 0;
   z-index: 10;
+  height: 82px;
 }
 
 .top-header-hide {
