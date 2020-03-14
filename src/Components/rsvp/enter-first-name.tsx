@@ -5,7 +5,6 @@ import styled from "@emotion/styled";
 
 type Props = {
   onNextButton: (invitationName: string) => void;
-  isMobile?: boolean;
 };
 
 const RSVPDetails = styled("div")`
@@ -34,7 +33,7 @@ export const EnterFirstName: FunctionComponent<Props> = props => {
     props.onNextButton(invitationName);
   };
 
-  const widthOfInput = props.isMobile ? "90%" : "60%";
+  const widthOfInput = "60%";
 
   return (
     <RSVPDetails id="rsvp">

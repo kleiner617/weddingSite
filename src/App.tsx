@@ -6,6 +6,8 @@ import MobileContainer from "./Containers/mobile-container";
 import RSVPContainer from "./Containers/rsvp-container";
 import "./App.css";
 import { useMediaQuery } from "react-responsive";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -14,6 +16,11 @@ const App = () => {
   const whichContainer =
     isDesktop || isTablet ? DesktopContainer : MobileContainer;
 
+  const onSaveSucceeded = () => {
+    toast.success("Thanks for the RSVP!  Can't wait to see you there!", {
+      position: toast.POSITION.TOP_CENTER
+    });
+  };
   return (
     <div>
       {/* <Switch> */}
@@ -22,10 +29,14 @@ const App = () => {
         exact
         path="/rsvp"
         render={(props: any) => (
-          <RSVPContainer isMobile={!isDesktop && !isTablet} />
+          <RSVPContainer
+            isMobile={!isDesktop && !isTablet}
+            saveSucceeded={onSaveSucceeded}
+          />
         )}
       />
       {/* </Switch> */}
+      <ToastContainer />
     </div>
   );
 };

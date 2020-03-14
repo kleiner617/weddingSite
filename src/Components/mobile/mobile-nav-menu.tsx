@@ -5,8 +5,7 @@ import { NavHashLink as NavLink } from "react-router-hash-link";
 import { HashLink as Link } from "react-router-hash-link";
 
 type PropsType = {
-  allRefs: any;
-  navMenuOnClick: (ref: any) => void;
+  scrollToHome?: any;
 };
 
 const MobileLayoutDiv = styled("div")``;
@@ -156,6 +155,7 @@ export class MobileNavMenu extends React.Component<PropsType, StateType> {
         <Link smooth to="/" activeClassName="active" onClick={this.toggleMenu}>
           <HeartImg
             src={require("../../Content/Images/heart_script_black.png")}
+            onClick={this.props.scrollToHome}
           ></HeartImg>
         </Link>
       </Menu>

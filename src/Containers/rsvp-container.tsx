@@ -6,14 +6,15 @@ import * as _ from "lodash";
 import StickyHeader from "../Components/desktop/sticky-header";
 import { allGuests, searchTerms } from "../Components/rsvp/test-data";
 import { withRouter } from "react-router-dom";
-
-// import { FirebaseContext, withFirebase } from "../Components/firebase";
+import MobileNavMenu from "../Components/mobile/mobile-nav-menu";
+import MobileUI from "../Components/rsvp/mobile-ui";
+import DesktopUI from "../Components/rsvp/desktop-ui";
 
 import { EnterFirstName } from "../Components/rsvp/enter-first-name";
 import AttendanceDetails from "../Components/rsvp/attendance-details";
 import { firestore } from "firebase";
 
-type Props = { history: any; isMobile?: boolean };
+type Props = { history: any; isMobile?: boolean; saveSucceeded: any };
 type State = {
   firstName: string;
   lastName: string;
@@ -27,13 +28,6 @@ type EventType = {
     id: string;
   };
 };
-
-const RSVPDetails = styled("div")``;
-
-const HeaderPlaceholder = styled("div")`
-  height: 100px;
-  background-color: paleturquoise;
-`;
 
 interface Values {
   firstName: string;
@@ -92,13 +86,16 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
   };
 
   const onSaveRSVP = (saveDetails: any) => {
-    saveDetails.map((guest: any) => {
+    saveDetails.map((guest: any, index: number) => {
       firebase
         .firestore()
         .collection("responses")
         .add({ ...guest })
         .then(function(docRef) {
-          console.log("Document written with ID: ", docRef.id);
+          if (index === saveDetails.length - 1) {
+            props.history.push("/");
+            props.saveSucceeded();
+          }
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
@@ -177,24 +174,23 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
       }}
     >
       {!props.isMobile && <StickyHeader visibleSection={"rsvp"} />}
+      {props.isMobile && <MobileNavMenu />}
 
-      <RSVPDetails
-        style={{ padding: `${props.isMobile ? "30px 15px" : "60px"}` }}
-      >
-        {!guestList.length && (
-          <EnterFirstName
-            isMobile={props.isMobile}
-            onNextButton={getPossibleGuests}
-          ></EnterFirstName>
-        )}
-        {!!guestList.length && (
-          <AttendanceDetails
-            guestList={guestList}
-            isMobile={props.isMobile}
-            onSave={onSaveRSVP}
-          ></AttendanceDetails>
-        )}
-      </RSVPDetails>
+      {!props.isMobile && (
+        <DesktopUI
+          guestList={guestList}
+          getPossibleGuests={getPossibleGuests}
+          onSaveRSVP={onSaveRSVP}
+        />
+      )}
+
+      {props.isMobile && (
+        <MobileUI
+          guestList={guestList}
+          getPossibleGuests={getPossibleGuests}
+          onSaveRSVP={onSaveRSVP}
+        />
+      )}
     </div>
   );
 };

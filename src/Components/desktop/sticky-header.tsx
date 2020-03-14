@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { HashLink as Link } from "react-router-hash-link";
 type Props = {
   visibleSection: string;
+  scrollToHome?: any;
 };
 
 const TopHeader = styled("div")`
@@ -31,7 +32,7 @@ const HeartImg = styled("img")`
   margin-top: -10px;
 `;
 
-const StickyHeader = ({ visibleSection }: Props) => {
+const StickyHeader = ({ visibleSection, scrollToHome }: Props) => {
   return (
     <div
       className={`sticky ${
@@ -70,6 +71,7 @@ const StickyHeader = ({ visibleSection }: Props) => {
         <Link smooth to="/">
           <HeartImg
             src={require("../../Content/Images/heart_script_black.png")}
+            onClick={scrollToHome}
           ></HeartImg>
         </Link>
 

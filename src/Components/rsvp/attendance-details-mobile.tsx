@@ -24,19 +24,25 @@ type plusOneState = {
 };
 
 const RSVPDetails = styled("div")`
-  height: 400px;
-  border: 1px black;
+  margin-top: 40px;
 `;
 
 const ResponseSection = styled("div")`
   display: grid;
-  grid-template-columns: 2fr 0.5fr 0.5fr;
+  grid-template-columns: 2fr 1fr;
+
   margin: 10px auto;
   font-size: 24px;
 `;
 
 const ResponseHeader = styled("div")`
-  font-size: 36px;
+  font-size: 30px;
+`;
+
+const PlusOneGrid = styled("div")`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
 `;
 
 const DetailsHeader = styled("div")`
@@ -90,30 +96,31 @@ const PlusOneSection = (
       {plusOneState.isAttending !== -1 && plusOneState.isAttending !== 0 && (
         <div>
           <Form>
-            <Form.Group controlId="formFirstName">
-              <Form.Label>First Name </Form.Label>
-              <Form.Control
-                type="text"
-                value={plusOneState.firstName}
-                onChange={firstNameBlur}
-                style={{
-                  width: "30%",
-                  margin: "20px auto"
-                }}
-              />
-              <Form.Label>Last Name </Form.Label>
-              <Form.Control
-                type="text"
-                id="guestLastName"
-                onChange={lastNameBlur}
-                value={plusOneState.lastName}
-                style={{
-                  width: "30%",
-                  margin: "20px auto"
-                }}
-              />
-            </Form.Group>
-            <Form.Group controlId="formLastName"></Form.Group>
+            <PlusOneGrid>
+              <Form.Group controlId="formFirstName">
+                <div>First Name </div>
+                <Form.Control
+                  type="text"
+                  value={plusOneState.firstName}
+                  onChange={firstNameBlur}
+                  style={{
+                    margin: "20px 10px"
+                  }}
+                />
+              </Form.Group>
+              <Form.Group controlId="formLastName">
+                <div>Last Name </div>
+                <Form.Control
+                  type="text"
+                  id="guestLastName"
+                  onChange={lastNameBlur}
+                  value={plusOneState.lastName}
+                  style={{
+                    margin: "20px auto"
+                  }}
+                />
+              </Form.Group>
+            </PlusOneGrid>
           </Form>
         </div>
       )}
@@ -133,11 +140,14 @@ const AdditionalDetailsSection = (
     <Form
       className="additional-details"
       style={{
-        width: "30%"
+        width: "100%"
       }}
     >
       <Form.Group controlId="exampleForm.ControlTextarea1">
-        <Form.Label className="additional-details-label">
+        <Form.Label
+          className="additional-details-label"
+          placeholder="any special requests, food allergies, etc..."
+        >
           Anything else we need to know?
         </Form.Label>
         <Form.Control
@@ -147,12 +157,11 @@ const AdditionalDetailsSection = (
           onChange={infoChange}
         />
       </Form.Group>
-      {/* <input type="text" name="additionalInfo" onBlur={infoBlur}></input> */}
     </Form>
   );
 };
 
-export const AttendanceDetails: FunctionComponent<Props> = props => {
+export const AttendanceDetailsMobile: FunctionComponent<Props> = props => {
   const initialState = {};
   const plusOneInitialState = {
     plusOneGuest: false,
@@ -239,6 +248,9 @@ export const AttendanceDetails: FunctionComponent<Props> = props => {
     value: boolean,
     details: { checkboxID: string; checkboxName: string }
   ) => {
+    console.log("value", value);
+    console.log("details");
+    console.log(details);
     if (!value) {
       dispatch({
         payload: { [details.checkboxID]: -1 }
@@ -288,30 +300,33 @@ export const AttendanceDetails: FunctionComponent<Props> = props => {
       {guestList.map((guest: any) => {
         return (
           <ResponseSection
+            id={guest.id}
             style={{
-              width: "50%",
-              textAlign: "center"
+              width: "100%",
+              textAlign: "left"
             }}
           >
             <div style={{ alignSelf: "center" }}>
               {guest.firstName} {guest.lastName}
             </div>
-            <Checkbox
-              name={`${guest.id}`}
-              value={guestListState[`${guest.id}`] === 1}
-              onChange={onCheckboxChange}
-              label={"yes"}
-              isDisabled={false}
-              id="guest-map-checkbox"
-            />
-            <Checkbox
-              name={`${guest.id}`}
-              value={guestListState[`${guest.id}`] === 0}
-              onChange={onCheckboxChange}
-              label={"no"}
-              isDisabled={false}
-              id="guest-map-checkbox"
-            />
+            <div>
+              <Checkbox
+                name={`${guest.id}`}
+                value={guestListState[`${guest.id}`] === 1}
+                onChange={onCheckboxChange}
+                label={"yes"}
+                isDisabled={false}
+                id={`${guest.id}`}
+              />
+              <Checkbox
+                name={`${guest.id}`}
+                value={guestListState[`${guest.id}`] === 0}
+                onChange={onCheckboxChange}
+                label={"no"}
+                isDisabled={false}
+                id={`${guest.id}`}
+              />
+            </div>
           </ResponseSection>
         );
       })}
@@ -333,6 +348,10 @@ export const AttendanceDetails: FunctionComponent<Props> = props => {
         type="button"
         disabled={!submitDisabled}
         style={{
+          position: "fixed",
+          bottom: "0",
+          right: "30px",
+          marginBottom: "40px",
           width: "100px",
           fontSize: "24px",
           float: "right",
@@ -346,4 +365,4 @@ export const AttendanceDetails: FunctionComponent<Props> = props => {
   );
 };
 
-export default AttendanceDetails;
+export default AttendanceDetailsMobile;

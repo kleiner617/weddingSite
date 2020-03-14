@@ -5,6 +5,7 @@ import { HashLink as Link } from "react-router-hash-link";
 
 type Props = {
   visibleSection: string;
+  scrollToHome?: any;
 };
 
 const TopHeader = styled("div")`
@@ -39,12 +40,13 @@ const MenuHeader = (props: Props) => {
         <Link to="/#ceremony" smooth>
           <TopHeaderButton className="top-button">Ceremony</TopHeaderButton>
         </Link>
-        <Link to="/venue" smooth>
+        <Link to="/#venue" smooth>
           <TopHeaderButton className="top-button">Venue</TopHeaderButton>{" "}
         </Link>
         <Link to="/" smooth>
           <HeartImg
             src={require("../../Content/Images/heart_script_black.png")}
+            onClick={props.scrollToHome}
           ></HeartImg>
         </Link>
 

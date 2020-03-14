@@ -46,6 +46,7 @@ const MobileContainer = () => {
   const registryRef = useRef(null);
 
   const sectionRefs = [
+    { section: "header", ref: headerRef },
     { section: "ceremony", ref: ceremonyRef },
     { section: "faq", ref: faqRef },
     { section: "getting-there", ref: gettingThereRef },
@@ -79,34 +80,20 @@ const MobileContainer = () => {
     };
   }, [visibleSection]);
 
-  const navMenuOnClick = (ref: any) => {
-    // scrollTo(faqRef.current);
+  const scrollToHome = (ref: any) => {
+    scrollTo(headerRef.current);
   };
 
   return (
     <div className="App">
-      <MobileNavMenu
-        allRefs={sectionRefs}
-        navMenuOnClick={navMenuOnClick}
-      ></MobileNavMenu>
-      <PhotoHeader />
-      <NameHeaderMobile></NameHeaderMobile>
+      <MobileNavMenu scrollToHome={scrollToHome} />
+      <div className="mobile-header" ref={headerRef}>
+        <PhotoHeader />
+        <NameHeaderMobile></NameHeaderMobile>
+      </div>
+
       {/* <Countdown isMobile={true} /> */}
       <div className="content">
-        <div
-          // className="sticky"
-          className={`sticky ${
-            visibleSection === "ceremony" ||
-            visibleSection === "getting-there" ||
-            visibleSection === "faq" ||
-            visibleSection === "registry"
-              ? "show"
-              : "hide"
-          }`}
-        >
-          <div className="header" ref={headerRef}></div>
-        </div>
-
         <div className="section" id="ceremony" ref={ceremonyRef}>
           <CeremonyContainer isMobile={true}></CeremonyContainer>
         </div>

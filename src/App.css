@@ -109,10 +109,6 @@ a6b691
   font-size: 24px;
 }
 
-.guest-map-checkbox {
-  background-color: hotpink;
-}
-
 .additional-details {
   margin: auto;
   width: 30%;
@@ -125,7 +121,16 @@ a6b691
 
 .checkbox-container {
   font-size: 24px;
-  width: 100px;
+  margin: 0 10px;
   display: inline-block;
-  margin-top: 15px;
+}
+
+input[type="checkbox"] {
+  margin-top: 13px;
+}
+
+.btn-outline-primary:disabled {
+  color: grey;
+  border-color: grey;
+  background-color: transparent;
 }

@@ -87,31 +87,25 @@ const HomeContainer = () => {
     };
   }, [visibleSection]);
 
+  const scrollToHome = () => {
+    scrollTo(headerRef.current);
+  };
+
   return (
     <div className="App">
       <div className="content">
         <div className="section" id="header" ref={headerRef}>
           <MenuHeader
-            // ceremonyClick={scrollToCeremony}
-            // venueClick={scrollToVenue}
-            // detailsClick={scrollToDetails}
-            // registryClick={scrollToRegistry}
             visibleSection={visibleSection}
-            // rsvpClick={scrollToRegistry}
-            // homeClick={scrollToHome}
+            scrollToHome={scrollToHome}
           ></MenuHeader>
           <PhotoHeader />
           <NameHeaderDesktop />
           <CountdownComponent isMobile={true} />
         </div>
         <StickyHeader
-          // ceremonyClick={scrollToCeremony}
-          // venueClick={scrollToVenue}
-          // detailsClick={scrollToDetails}
-          // registryClick={scrollToRegistry}
           visibleSection={visibleSection}
-          // rsvpClick={scrollToRegistry}
-          // homeClick={scrollToHome}
+          scrollToHome={scrollToHome}
         />
         <div className="section" id="ceremony" ref={ceremonyRef}>
           <CeremonyContainer></CeremonyContainer>

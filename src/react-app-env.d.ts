@@ -7,3 +7,4 @@ declare module "react-burger-menu";
 declare module "react-bootstrap";
 declare module "react-responsive";
 declare module "lodash";
+declare module "react-toastify";
