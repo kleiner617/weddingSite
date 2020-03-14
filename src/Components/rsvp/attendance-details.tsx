@@ -298,11 +298,12 @@ export const AttendanceDetails: FunctionComponent<Props> = props => {
               width: "50%",
               textAlign: "left"
             }}
+            id={guest.id}
           >
-            <div style={{ alignSelf: "center" }}>
+            <div style={{ alignSelf: "center" }} id={guest.id}>
               {guest.firstName} {guest.lastName}
             </div>
-            <div>
+            <div id={guest.id}>
               <Checkbox
                 name={`${guest.id}`}
                 value={guestListState[`${guest.id}`] === 1}

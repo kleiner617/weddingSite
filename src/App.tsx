@@ -20,10 +20,16 @@ const App = () => {
     isDesktop || isTablet ? DesktopContainer : MobileContainer;
 
   const onSaveSucceeded = () => {
-    toast.success("Thanks for the RSVP!  Can't wait to see you there!", {
+    toast("Thanks for the RSVP!  Can't wait to see you there!", {
       position: toast.POSITION.TOP_CENTER
     });
   };
+
+  const mobileToastClassName =
+    isDesktop || isTablet
+      ? "custom-toast-notification"
+      : "mobile-custom-toast-notification";
+
   return (
     <div>
       {/* <Switch> */}
@@ -40,15 +46,15 @@ const App = () => {
       />
       {/* </Switch> */}
       <ToastContainer
-        position="top-right"
+        toastClassName={mobileToastClassName}
+        bodyClassName="custom-toast-size"
+        position="top-center"
         autoClose={5000}
-        hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
         rtl={false}
         pauseOnVisibilityChange
         draggable
-        pauseOnHover
       />
     </div>
   );

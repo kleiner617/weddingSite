@@ -13,7 +13,7 @@ const TopHeader = styled("div")`
   margin-top: 10px;
   width: 100%;
   margin: auto;
-  z-index: 999999;
+  z-index: 9;
 `;
 const TopHeaderButton = styled("div")`
   display: inline-block;
