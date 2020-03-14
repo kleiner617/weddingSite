@@ -92,7 +92,18 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
   };
 
   const onSaveRSVP = (saveDetails: any) => {
-    // TODO: Add save stuff here, please
+    saveDetails.map((guest: any) => {
+      firebase
+        .firestore()
+        .collection("responses")
+        .add({ ...guest })
+        .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
+    });
   };
 
   // const noResultsReturned = (invitationName: string) => {
@@ -130,8 +141,6 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
     if (possibleGuests.length()) {
     }
   };
-
-  const submitRSVP = () => {};
 
   const uploadAllData = () => {
     searchTerms.forEach(obj => {
