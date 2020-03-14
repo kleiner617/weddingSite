@@ -245,9 +245,6 @@ export const AttendanceDetailsMobile: FunctionComponent<Props> = props => {
     value: boolean,
     details: { checkboxID: string; checkboxName: string }
   ) => {
-    console.log("value", value);
-    console.log("details");
-    console.log(details);
     if (!value) {
       dispatch({
         payload: { [details.checkboxID]: -1 }

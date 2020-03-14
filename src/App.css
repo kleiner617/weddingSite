@@ -134,3 +134,6 @@ input[type="checkbox"] {
   border-color: grey;
   background-color: transparent;
 }
+.errorNameNotFound {
+  color: red;
+}

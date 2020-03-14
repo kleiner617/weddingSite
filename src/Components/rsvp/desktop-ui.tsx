@@ -1,8 +1,5 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent } from "react";
 import styled from "@emotion/styled";
-import StickyHeader from "../../Components/desktop/sticky-header";
-import { withRouter } from "react-router-dom";
-import MobileNavMenu from "../../Components/mobile/mobile-nav-menu";
 
 // import { FirebaseContext, withFirebase } from "../Components/firebase";
 
@@ -13,6 +10,7 @@ type Props = {
   guestList: any;
   getPossibleGuests: any;
   onSaveRSVP: any;
+  isValidName: string;
 };
 type State = {
   firstName: string;
@@ -31,8 +29,8 @@ interface Values {
   isCheckedNo: boolean;
 }
 
-export const RSVPContainer: FunctionComponent<Props> = props => {
-  const { guestList, getPossibleGuests, onSaveRSVP } = props;
+export const DesktopUI: FunctionComponent<Props> = props => {
+  const { guestList, getPossibleGuests, onSaveRSVP, isValidName } = props;
   return (
     <div
       style={{
@@ -42,7 +40,10 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
     >
       <RSVPDetails style={{ padding: "60px" }}>
         {!guestList.length && (
-          <EnterFirstName onNextButton={getPossibleGuests}></EnterFirstName>
+          <EnterFirstName
+            onNextButton={getPossibleGuests}
+            isValidName={isValidName}
+          ></EnterFirstName>
         )}
         {!!guestList.length && (
           <AttendanceDetails
@@ -55,4 +56,4 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
   );
 };
 
-export default withRouter(RSVPContainer);
+export default DesktopUI;

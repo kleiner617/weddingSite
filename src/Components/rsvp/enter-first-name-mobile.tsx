@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 
 type Props = {
   onNextButton: (invitationName: string) => void;
+  isValidName: string;
 };
 
 const RSVPDetails = styled("div")`
@@ -17,6 +18,14 @@ const RSVPQuestion = styled("div")`
   margin: auto;
   width: 70%;
   font-size: 30px;
+`;
+
+const ErrorMessage = styled("div")`
+  text-align: center;
+  width: 70%;
+  font-size: 20px;
+  color: red;
+  margin: auto;
 `;
 
 export const EnterFirstNameMobile: FunctionComponent<Props> = props => {
@@ -56,6 +65,12 @@ export const EnterFirstNameMobile: FunctionComponent<Props> = props => {
               }}
             />
           </Form.Group>
+          {props.isValidName === "error" && (
+            <ErrorMessage>
+              Sorry, that name was not found. Please try entering your first and
+              last name.
+            </ErrorMessage>
+          )}
           <Button
             variant="outline-primary"
             type="button"

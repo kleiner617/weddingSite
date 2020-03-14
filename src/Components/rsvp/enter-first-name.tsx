@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 
 type Props = {
   onNextButton: (invitationName: string) => void;
+  isValidName: string;
 };
 
 const RSVPDetails = styled("div")`
@@ -17,6 +18,10 @@ const RSVPQuestion = styled("div")`
   font-size: 36px;
 `;
 
+const ErrorMessage = styled("div")`
+  font-size: 20px;
+  color: red;
+`;
 export const EnterFirstName: FunctionComponent<Props> = props => {
   const [invitationName, setInvitationName] = useState<string>("");
   const [enableButton, setEnableButton] = useState<boolean>(false);
@@ -37,12 +42,13 @@ export const EnterFirstName: FunctionComponent<Props> = props => {
   const widthOfInput = "60%";
 
   return (
-    <RSVPDetails id="rsvp">
+    <RSVPDetails id="rsvp" onSubmit={submitName}>
       <RSVPQuestion>Please Enter the Name on your invitation</RSVPQuestion>
       <FormStyle>
-        <Form onSubmit={submitName}>
+        <Form>
           <Form.Group controlId="formBasicText">
             <Form.Control
+              required
               type="text"
               value={invitationName}
               placeholder="Mr. and Mrs. John Doe"
@@ -54,6 +60,12 @@ export const EnterFirstName: FunctionComponent<Props> = props => {
               }}
             />
           </Form.Group>
+          {props.isValidName === "error" && (
+            <ErrorMessage>
+              Sorry, that name was not found. Please try entering your first and
+              last name.
+            </ErrorMessage>
+          )}
           <Button
             variant="outline-primary"
             type="button"

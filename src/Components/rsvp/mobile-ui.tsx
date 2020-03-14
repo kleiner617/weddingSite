@@ -1,8 +1,5 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent } from "react";
 import styled from "@emotion/styled";
-import StickyHeader from "../../Components/desktop/sticky-header";
-import { withRouter } from "react-router-dom";
-import MobileNavMenu from "../../Components/mobile/mobile-nav-menu";
 
 // import { FirebaseContext, withFirebase } from "../Components/firebase";
 
@@ -13,6 +10,7 @@ type Props = {
   guestList: any;
   getPossibleGuests: any;
   onSaveRSVP: any;
+  isValidName: string;
 };
 type State = {
   firstName: string;
@@ -32,7 +30,7 @@ interface Values {
 }
 
 export const MobileUI: FunctionComponent<Props> = props => {
-  const { guestList, getPossibleGuests, onSaveRSVP } = props;
+  const { guestList, getPossibleGuests, onSaveRSVP, isValidName } = props;
   return (
     <div
       style={{
@@ -44,6 +42,7 @@ export const MobileUI: FunctionComponent<Props> = props => {
         {!guestList.length && (
           <EnterFirstNameMobile
             onNextButton={getPossibleGuests}
+            isValidName={isValidName}
           ></EnterFirstNameMobile>
         )}
         {!!guestList.length && (
@@ -57,4 +56,4 @@ export const MobileUI: FunctionComponent<Props> = props => {
   );
 };
 
-export default withRouter(MobileUI);
+export default MobileUI;

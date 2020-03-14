@@ -39,9 +39,10 @@ interface Values {
 
 export const RSVPContainer: FunctionComponent<Props> = props => {
   const [guestList, setGuestList] = useState<any>([]);
+  const [validated, setValidated] = useState<any>(null);
+  const [shouldUpdateState, setShouldUpdateState] = useState(false);
 
   const getPossibleGuests = async (invitationName: string) => {
-    console.log("Here in possible guests, get names?");
     const formattedName = invitationName
       .toLowerCase()
       .replace(/ and /g, " ")
@@ -81,7 +82,10 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
       Promise.all(results).then(completed => {
         // @ts-ignore
         setGuestList(allGuests);
+        setValidated("success");
       });
+    } else if (guestArray.length === 0) {
+      setValidated("error");
     }
   };
 
@@ -101,42 +105,6 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
           console.error("Error adding document: ", error);
         });
     });
-  };
-
-  // const noResultsReturned = (invitationName: string) => {
-  //   const resultsArray = invitationName
-  //     .toLowerCase()
-  //     .replace(/\./g, "")
-  //     .split(" ");
-
-  //   const removeWords = ["mrs", "mr", "and", "the"];
-  //   let mrsMrsCount = 0;
-
-  //   const filteredArray = resultsArray.filter(textKey => {
-  //     if (textKey === "mrs" || textKey === "mr") {
-  //       mrsMrsCount++;
-  //     }
-  //     return !removeWords.includes(textKey);
-  //   });
-
-  //   const guestsRef = firebase
-  //     .firestore()
-  //     .collection("search-terms")
-  //     .where("matchKeys", "array-contains-any", ["david", "klein"]);
-
-  //   // guestsRef.where("matchKeys", "array-contains", "David");
-  //   // @ts-ignore
-  //   const guestArray = [];
-  //   guestsRef.get().then(querySnapshot => {
-  //     querySnapshot.forEach(doc => {
-  //       guestArray.push(doc.data());
-  //     });
-  //   });
-  //   getActualGuest(guestArray, filteredArray);
-  // };
-  const getActualGuest = (possibleGuests: any, matchTerms: any) => {
-    if (possibleGuests.length()) {
-    }
   };
 
   const uploadAllData = () => {
@@ -178,6 +146,7 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
 
       {!props.isMobile && (
         <DesktopUI
+          isValidName={validated}
           guestList={guestList}
           getPossibleGuests={getPossibleGuests}
           onSaveRSVP={onSaveRSVP}
@@ -186,6 +155,7 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
 
       {props.isMobile && (
         <MobileUI
+          isValidName={validated}
           guestList={guestList}
           getPossibleGuests={getPossibleGuests}
           onSaveRSVP={onSaveRSVP}
