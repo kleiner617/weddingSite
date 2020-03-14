@@ -1,30 +1,10 @@
 import React from "react";
 import styled from "@emotion/styled";
-// import { Link } from "react-router-dom";
 import { HashLink as Link } from "react-router-hash-link";
 type Props = {
   visibleSection: string;
   scrollToHome?: any;
 };
-
-const TopHeader = styled("div")`
-  position: absolute;
-  margin-top: 10px;
-  width: 100%;
-  margin: auto;
-  z-index: 999999;
-`;
-const TopHeaderButton = styled("div")`
-  display: inline-block;
-  color: black;
-  font-weight: bold;
-  font-size: 24px;
-  padding: 0 40px;
-  cursor: pointer;
-  :hover {
-    color: #081090;
-  }
-`;
 
 const HeartImg = styled("img")`
   height: 90px;

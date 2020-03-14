@@ -1,6 +1,5 @@
 // import * as React from "react";
 import React, { useRef, useEffect, useState } from "react";
-import styled from "@emotion/styled";
 import MenuHeader from "../Components/desktop/menu-header";
 import PhotoHeader from "../Components/desktop/photo-header-large";
 import FAQContainer from "./faq-container";
@@ -11,17 +10,8 @@ import NameHeaderDesktop from "../Components/desktop/name-header-desktop";
 import Footer from "../Components/footer";
 import CountdownComponent from "../Components/countdown-component";
 import GettingThereContainer from "../Containers/getting-there-container";
-import { HashLink as Link } from "react-router-hash-link";
 
 type Props = {};
-
-const HomeContainerDiv = styled("div")``;
-
-const HeartImg = styled("img")`
-  height: 90px;
-  width: 90px;
-  margin-top: -10px;
-`;
 
 const getDimensions = (ele: any) => {
   const { height } = ele.getBoundingClientRect();
@@ -43,7 +33,7 @@ const scrollTo = (ele: any) => {
 };
 
 const HomeContainer = () => {
-  const [visibleSection, setVisibleSection] = useState();
+  const [visibleSection, setVisibleSection] = useState<any>();
 
   const headerRef = useRef(null);
   const ceremonyRef = useRef(null);
@@ -62,7 +52,6 @@ const HomeContainer = () => {
   useEffect(() => {
     console.log("this is the first use Effect", visibleSection);
     const handleScroll = () => {
-      const { height: headerHeight } = getDimensions(headerRef.current);
       const scrollPosition = window.scrollY + 82.76;
 
       const selected = sectionRefs.find(({ section, ref }) => {
@@ -85,7 +74,7 @@ const HomeContainer = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [visibleSection]);
+  }, [visibleSection, sectionRefs]);
 
   const scrollToHome = () => {
     scrollTo(headerRef.current);

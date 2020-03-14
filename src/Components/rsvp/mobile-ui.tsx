@@ -1,8 +1,6 @@
 import React, { FunctionComponent } from "react";
 import styled from "@emotion/styled";
 
-// import { FirebaseContext, withFirebase } from "../Components/firebase";
-
 import EnterFirstNameMobile from "./enter-first-name-mobile";
 import AttendanceDetailsMobile from "./attendance-details-mobile";
 

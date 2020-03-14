@@ -1,24 +1,17 @@
-// import * as React from "react";
 import React, { useRef, useEffect, useState } from "react";
-import styled from "@emotion/styled";
 import PhotoHeader from "../Components/mobile/photo-header-mobile";
 import FAQContainer from "./faq-container";
 import RegistryContainer from "./registry-container";
 import CeremonyContainer from "./ceremony-container";
 import MobileNavMenu from "../Components/mobile/mobile-nav-menu";
-import RSVPContainer from "./rsvp-container";
 import GettingThereContainer from "./getting-there-container";
 import NameHeaderMobile from "../Components/mobile/name-header-mobile";
 import Footer from "../Components/footer";
-import Countdown from "../Components/countdown-component";
 
 type Props = {};
 
-const MobileContainerDiv = styled("div")``;
-
 const getDimensions = (ele: any) => {
   const { height } = ele.getBoundingClientRect();
-  // const height = "400px";
   const offsetTop = ele.offsetTop;
   const offsetBottom = offsetTop + height;
 
@@ -37,7 +30,7 @@ const scrollTo = (ele: any) => {
 };
 
 const MobileContainer = () => {
-  const [visibleSection, setVisibleSection] = useState();
+  const [visibleSection, setVisibleSection] = useState<any>();
 
   const headerRef = useRef(null);
   const ceremonyRef = useRef(null);
@@ -78,7 +71,7 @@ const MobileContainer = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [visibleSection]);
+  }, [visibleSection, sectionRefs]);
 
   const scrollToHome = (ref: any) => {
     scrollTo(headerRef.current);

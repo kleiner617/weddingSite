@@ -1,4 +1,5 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/firestore";
 var config = {
   /* COPY THE ACTUAL CONFIG FROM FIREBASE CONSOLE */
   apiKey: "AIzaSyDUojvhR_1JTr8Ccbt04A3xM5Lm3xQNknI",
@@ -12,6 +13,10 @@ var config = {
 };
 
 // const app = firebase.initializeApp(config);
-// const fire = firebase.firestore(app);
-var fire = firebase.initializeApp(config);
-export default fire;
+// const fire = firebase.initializeApp(config);
+firebase.initializeApp(config);
+
+var firestore = firebase.firestore();
+
+// .initializeApp(config);
+export default firestore;

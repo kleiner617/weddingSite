@@ -45,10 +45,6 @@ const DetailsText = styled("p")`
   margin: 0;
   padding-bottom: 20px;
 `;
-const SubDetailsText = styled("p")`
-  font-size: ${(props: Props): string => (props.isMobile ? "20px" : "30px")};
-  margin: 0;
-`;
 
 export class FAQContainer extends React.PureComponent<Props> {
   render() {

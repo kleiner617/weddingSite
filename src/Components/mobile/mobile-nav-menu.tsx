@@ -1,14 +1,11 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { slide as Menu } from "react-burger-menu";
-import { NavHashLink as NavLink } from "react-router-hash-link";
 import { HashLink as Link } from "react-router-hash-link";
 
 type PropsType = {
   scrollToHome?: any;
 };
-
-const MobileLayoutDiv = styled("div")``;
 
 const styles = {
   bmBurgerButton: {

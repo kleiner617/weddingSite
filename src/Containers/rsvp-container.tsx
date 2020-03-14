@@ -1,20 +1,17 @@
-import React, { FunctionComponent, useState } from "react";
-import styled from "@emotion/styled";
-import { Formik, Field, Form, FormikHelpers, useFormik } from "formik";
-import firebase from "../Components/firebase/firebase";
-import * as _ from "lodash";
+import React, { FunctionComponent, useState, useEffect } from "react";
+import firestore from "../Components/firebase/firebase";
 import StickyHeader from "../Components/desktop/sticky-header";
-import { allGuests, searchTerms } from "../Components/rsvp/test-data";
 import { withRouter } from "react-router-dom";
 import MobileNavMenu from "../Components/mobile/mobile-nav-menu";
 import MobileUI from "../Components/rsvp/mobile-ui";
 import DesktopUI from "../Components/rsvp/desktop-ui";
 
-import { EnterFirstName } from "../Components/rsvp/enter-first-name";
-import AttendanceDetails from "../Components/rsvp/attendance-details";
-import { firestore } from "firebase";
-
-type Props = { history: any; isMobile?: boolean; saveSucceeded: any };
+type Props = {
+  history: any;
+  isMobile?: boolean;
+  saveSucceeded: any;
+  userFingerprint: string;
+};
 type State = {
   firstName: string;
   lastName: string;
@@ -40,7 +37,19 @@ interface Values {
 export const RSVPContainer: FunctionComponent<Props> = props => {
   const [guestList, setGuestList] = useState<any>([]);
   const [validated, setValidated] = useState<any>(null);
-  const [shouldUpdateState, setShouldUpdateState] = useState(false);
+  const [userFingerprint, setUserFingerprint] = useState<string>("");
+
+  useEffect(() => {
+    fetch(`http://www.devpowerapi.com/fingerprint`, {
+      method: "GET",
+      headers: new Headers({
+        Accept: "application/vnd.github.cloak-preview"
+      })
+    })
+      .then(res => res.json())
+      .then(response => setUserFingerprint(response.fingerprint || ""))
+      .catch(error => console.log(error));
+  }, []);
 
   const getPossibleGuests = async (invitationName: string) => {
     const formattedName = invitationName
@@ -51,8 +60,7 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
       .replace(/\s+/g, " ")
       .trim();
 
-    const searchTermsRef = firebase
-      .firestore()
+    const searchTermsRef = firestore
       .collection("search-terms")
       .where("matchKeys", "array-contains", formattedName);
 
@@ -70,10 +78,7 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
 
       // @ts-ignore
       const results = await guestArray[0].uids.map(async (uid: number) => {
-        const docRef = await firebase
-          .firestore()
-          .collection("guests")
-          .doc(`${uid}`);
+        const docRef = await firestore.collection("guests").doc(`${uid}`);
 
         const documentSnapshot = await docRef.get();
         await allGuests.push({ ...documentSnapshot.data(), id: uid });
@@ -91,42 +96,14 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
 
   const onSaveRSVP = (saveDetails: any) => {
     saveDetails.map((guest: any, index: number) => {
-      firebase
-        .firestore()
+      firestore
         .collection("responses")
-        .add({ ...guest })
+        .add({ ...guest, fingerprint: userFingerprint })
         .then(function(docRef) {
           if (index === saveDetails.length - 1) {
             props.history.push("/");
             props.saveSucceeded();
           }
-        })
-        .catch(function(error) {
-          console.error("Error adding document: ", error);
-        });
-    });
-  };
-
-  const uploadAllData = () => {
-    searchTerms.forEach(obj => {
-      const dataToAdd = {
-        matchKeys: obj.matchKeys.map(key => key.toLowerCase()),
-        uids: obj.uids,
-        mrmrsFlag: obj.mrmrsFlag
-      };
-
-      // var guestsRef = firebase.firestore().collection("search-terms");
-
-      // guestsRef.doc(`${obj.id}`).set({
-      //   ...dataToAdd,
-      //   ...optionalData
-      // });
-      firebase
-        .firestore()
-        .collection("search-terms")
-        .add({ ...dataToAdd })
-        .then(function(docRef) {
-          console.log("Document written with ID: ", docRef.id);
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
