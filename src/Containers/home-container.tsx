@@ -11,6 +11,7 @@ import NameHeaderDesktop from "../Components/desktop/name-header-desktop";
 import Footer from "../Components/footer";
 import CountdownComponent from "../Components/countdown-component";
 import GettingThereContainer from "../Containers/getting-there-container";
+import { HashLink as Link } from "react-router-hash-link";
 
 type Props = {};
 
@@ -59,9 +60,10 @@ const HomeContainer = () => {
   ];
 
   useEffect(() => {
+    console.log("this is the first use Effect", visibleSection);
     const handleScroll = () => {
       const { height: headerHeight } = getDimensions(headerRef.current);
-      const scrollPosition = window.scrollY + headerHeight;
+      const scrollPosition = window.scrollY + 90;
 
       const selected = sectionRefs.find(({ section, ref }) => {
         const ele = ref.current;
@@ -130,10 +132,10 @@ const HomeContainer = () => {
         <div className="section" id="ceremony" ref={ceremonyRef}>
           <CeremonyContainer></CeremonyContainer>
         </div>
-        <div className="section" id="getting-there" ref={gettingThereRef}>
+        <div className="section" id="venue" ref={gettingThereRef}>
           <GettingThereContainer></GettingThereContainer>
         </div>
-        <div className="section" id="faq" ref={faqRef}>
+        <div className="section" id="details" ref={faqRef}>
           <FAQContainer></FAQContainer>
         </div>
         <div className="section" id="registry" ref={registryRef}>

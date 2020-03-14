@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 
 type Props = {
   ceremonyClick: () => void;
@@ -41,24 +42,29 @@ const MenuHeader = (props: Props) => {
   return (
     <div>
       <TopHeader>
-        <TopHeaderButton className="top-button" onClick={props.ceremonyClick}>
-          Ceremony
-        </TopHeaderButton>
-        <TopHeaderButton className="top-button" onClick={props.venueClick}>
-          Venue
-        </TopHeaderButton>
+        <Link to="/ceremony#ceremony" smooth>
+          <TopHeaderButton className="top-button">Ceremony</TopHeaderButton>
+        </Link>
+        <Link to="/venue#venue" smooth>
+          <TopHeaderButton className="top-button">Venue</TopHeaderButton>{" "}
+        </Link>
+
         <HeartImg
           src={require("../../Content/Images/heart_script_black.png")}
         ></HeartImg>
-        <TopHeaderButton className="top-button" onClick={props.detailsClick}>
-          Details
-        </TopHeaderButton>
-        <TopHeaderButton className="top-button" onClick={props.registryClick}>
-          Registry
-        </TopHeaderButton>
-        <TopHeaderButton>
-          <Link to={`/rsvp`}> RSVP </Link>
-        </TopHeaderButton>
+        <Link to="/details#details" smooth>
+          <TopHeaderButton className="top-button">Details</TopHeaderButton>{" "}
+        </Link>
+
+        <Link to="/registry#registry" smooth>
+          <TopHeaderButton className="top-button">Registry</TopHeaderButton>{" "}
+        </Link>
+
+        <Link to="/rsvp#rsvp" smooth>
+          <TopHeaderButton>
+            <Link to={`/rsvp`}> RSVP </Link>
+          </TopHeaderButton>{" "}
+        </Link>
       </TopHeader>
     </div>
   );

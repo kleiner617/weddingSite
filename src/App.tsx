@@ -17,7 +17,7 @@ const App = () => {
   return (
     <div>
       {/* <Switch> */}
-      <Route exact path="/" component={whichContainer} />
+      <Route path="/" component={whichContainer} />
       <Route
         path="/rsvp"
         render={(props: any) => (
