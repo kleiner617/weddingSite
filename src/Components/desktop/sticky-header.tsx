@@ -17,8 +17,9 @@ const StickyHeader = ({ visibleSection, scrollToHome }: Props) => {
     <div
       className={`sticky ${
         visibleSection === "ceremony" ||
-        visibleSection === "getting-there" ||
         visibleSection === "faq" ||
+        visibleSection === "getting-there" ||
+        visibleSection === "details" ||
         visibleSection === "registry" ||
         visibleSection === "rsvp"
           ? "show"
@@ -34,6 +35,17 @@ const StickyHeader = ({ visibleSection, scrollToHome }: Props) => {
             }`}
           >
             Ceremony
+          </button>
+        </Link>
+
+        <Link smooth to="/#faq">
+          <button
+            type="button"
+            className={`header_link ${
+              visibleSection === "faq" ? "selected" : ""
+            }`}
+          >
+            FAQ
           </button>
         </Link>
 
@@ -59,7 +71,7 @@ const StickyHeader = ({ visibleSection, scrollToHome }: Props) => {
           <button
             type="button"
             className={`header_link ${
-              visibleSection === "faq" ? "selected" : ""
+              visibleSection === "details" ? "selected" : ""
             }`}
           >
             Details

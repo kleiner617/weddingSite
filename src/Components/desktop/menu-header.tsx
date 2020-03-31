@@ -40,6 +40,9 @@ const MenuHeader = (props: Props) => {
         <Link to="/#ceremony" smooth>
           <TopHeaderButton className="top-button">Ceremony</TopHeaderButton>
         </Link>
+        <Link to="/#faq" smooth>
+          <TopHeaderButton className="top-button">FAQ</TopHeaderButton>
+        </Link>
         <Link to="/#venue" smooth>
           <TopHeaderButton className="top-button">Venue</TopHeaderButton>{" "}
         </Link>

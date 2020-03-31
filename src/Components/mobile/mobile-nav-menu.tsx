@@ -117,6 +117,14 @@ export class MobileNavMenu extends React.Component<PropsType, StateType> {
         >
           Ceremony
         </Link>
+        <Link
+          smooth
+          to="/#faq"
+          activeClassName="active"
+          onClick={this.toggleMenu}
+        >
+          FAQ
+        </Link>
 
         <Link
           smooth

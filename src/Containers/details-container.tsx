@@ -46,7 +46,7 @@ const DetailsText = styled("p")`
   padding-bottom: 20px;
 `;
 
-export class FAQContainer extends React.PureComponent<Props> {
+export class DetailsContainer extends React.PureComponent<Props> {
   render() {
     return (
       <FAQDetails className={this.props.className} id={this.props.id}>
@@ -59,15 +59,16 @@ export class FAQContainer extends React.PureComponent<Props> {
           {...this.props}
         ></FloralImage>
         <Title {...this.props}>Details</Title>
-        <Details>
+        <Details>More details coming soon</Details>
+        {/* <Details>
           <DetailsText {...this.props}>
             {" "}
             The venue will be open at 4pm and the ceremony will start at 4:30pm
           </DetailsText>
-        </Details>
+        </Details> */}
       </FAQDetails>
     );
   }
 }
 
-export default FAQContainer;
+export default DetailsContainer;

@@ -95,10 +95,11 @@ export const RSVPContainer: FunctionComponent<Props> = props => {
   };
 
   const onSaveRSVP = (saveDetails: any) => {
+    const dateRSVP = new Date();
     saveDetails.map((guest: any, index: number) => {
       firestore
         .collection("responses")
-        .add({ ...guest, fingerprint: userFingerprint })
+        .add({ ...guest, fingerprint: userFingerprint, date: dateRSVP })
         .then(function(docRef) {
           if (index === saveDetails.length - 1) {
             props.history.push("/");

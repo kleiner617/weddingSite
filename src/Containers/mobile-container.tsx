@@ -1,10 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
 import PhotoHeader from "../Components/mobile/photo-header-mobile";
-import FAQContainer from "./faq-container";
+import DetailsContainer from "./details-container";
 import RegistryContainer from "./registry-container";
 import CeremonyContainer from "./ceremony-container";
 import MobileNavMenu from "../Components/mobile/mobile-nav-menu";
 import GettingThereContainer from "./getting-there-container";
+import COVIDContainer from "./covid-container";
 import NameHeaderMobile from "../Components/mobile/name-header-mobile";
 import Footer from "../Components/footer";
 
@@ -34,14 +35,16 @@ const MobileContainer = () => {
 
   const headerRef = useRef(null);
   const ceremonyRef = useRef(null);
+  const covidRef = useRef(null);
   const gettingThereRef = useRef(null);
-  const faqRef = useRef(null);
+  const detailsRef = useRef(null);
   const registryRef = useRef(null);
 
   const sectionRefs = [
     { section: "header", ref: headerRef },
     { section: "ceremony", ref: ceremonyRef },
-    { section: "faq", ref: faqRef },
+    { section: "faq", ref: covidRef },
+    { section: "details", ref: detailsRef },
     { section: "getting-there", ref: gettingThereRef },
     { section: "registry", ref: registryRef }
   ];
@@ -90,11 +93,15 @@ const MobileContainer = () => {
         <div className="section" id="ceremony" ref={ceremonyRef}>
           <CeremonyContainer isMobile={true}></CeremonyContainer>
         </div>
+        <div className="section" id="faq" ref={covidRef}>
+          <COVIDContainer isMobile={true}></COVIDContainer>
+        </div>
+
         <div className="section" id="venue" ref={gettingThereRef}>
           <GettingThereContainer isMobile={true}></GettingThereContainer>
         </div>
-        <div className="section" id="details" ref={faqRef}>
-          <FAQContainer isMobile={true}></FAQContainer>
+        <div className="section" id="details" ref={detailsRef}>
+          <DetailsContainer isMobile={true}></DetailsContainer>
         </div>
 
         <div className="section" id="registry" ref={registryRef}>

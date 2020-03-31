@@ -32,7 +32,7 @@ export class NameHeader extends React.PureComponent<Props> {
           {...this.props}
         ></EmilyHeatherTitle>
         <DateText>are getting married!!</DateText>
-        <DateText>May 16, 2020</DateText>
+        {/* <DateText>May 16, 2020</DateText> */}
       </NameContent>
     );
   }

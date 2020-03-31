@@ -2,9 +2,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import MenuHeader from "../Components/desktop/menu-header";
 import PhotoHeader from "../Components/desktop/photo-header-large";
-import FAQContainer from "./faq-container";
+import DetailsContainer from "./details-container";
 import RegistryContainer from "./registry-container";
 import CeremonyContainer from "./ceremony-container";
+import COVIDContainer from "./covid-container";
 import StickyHeader from "../Components/desktop/sticky-header";
 import NameHeaderDesktop from "../Components/desktop/name-header-desktop";
 import Footer from "../Components/footer";
@@ -37,15 +38,17 @@ const HomeContainer = () => {
 
   const headerRef = useRef(null);
   const ceremonyRef = useRef(null);
+  const covidRef = useRef(null);
   const gettingThereRef = useRef(null);
-  const faqRef = useRef(null);
+  const detailsRef = useRef(null);
   const registryRef = useRef(null);
 
   const sectionRefs = [
     { section: "header", ref: headerRef },
     { section: "ceremony", ref: ceremonyRef },
+    { section: "faq", ref: covidRef },
     { section: "getting-there", ref: gettingThereRef },
-    { section: "faq", ref: faqRef },
+    { section: "details", ref: detailsRef },
     { section: "registry", ref: registryRef }
   ];
 
@@ -90,7 +93,7 @@ const HomeContainer = () => {
           ></MenuHeader>
           <PhotoHeader />
           <NameHeaderDesktop />
-          <CountdownComponent isMobile={true} />
+          {/* <CountdownComponent isMobile={true} /> */}
         </div>
         <StickyHeader
           visibleSection={visibleSection}
@@ -99,11 +102,14 @@ const HomeContainer = () => {
         <div className="section" id="ceremony" ref={ceremonyRef}>
           <CeremonyContainer></CeremonyContainer>
         </div>
+        <div className="section" id="faq" ref={covidRef}>
+          <COVIDContainer />
+        </div>
         <div className="section" id="venue" ref={gettingThereRef}>
           <GettingThereContainer></GettingThereContainer>
         </div>
-        <div className="section" id="details" ref={faqRef}>
-          <FAQContainer></FAQContainer>
+        <div className="section" id="details" ref={detailsRef}>
+          <DetailsContainer></DetailsContainer>
         </div>
         <div className="section" id="registry" ref={registryRef}>
           <RegistryContainer></RegistryContainer>
