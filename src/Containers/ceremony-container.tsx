@@ -26,14 +26,6 @@ const Details = styled("div")`
   margin: auto;
 `;
 
-const CovidAnnouncement = styled("div")`
-  font-size: ${(props: Props): string => (props.isMobile ? "24px" : "28px")};
-  margin: 20px;
-  width: ${(props: Props): string => (props.isMobile ? "85%" : "800px")};
-  margin: auto;
-  padding-bottom: 30px;
-  color: darkred;
-`;
 
 const DetailsTitle = styled("div")`
   font-size: ${(props: Props): string => (props.isMobile ? "30px" : "50px")};
@@ -80,18 +72,6 @@ export class CeremonyContainer extends React.PureComponent<Props> {
   render() {
     return (
       <CeremonyDetails className={this.props.className} id={this.props.id}>
-        <CovidAnnouncement {...this.props}>
-          <p>
-            Due to the restrictions on social gatherings surrounding COVID-19,
-            we will unfortunately need to postpone our wedding. We will be in
-            touch with more details when they are finalized.
-          </p>
-          <p>
-            We are sorry for any inconvenience this may cause, but we look
-            forward to celebrating with all of our favorite people in good
-            health and good spirits as soon as we are able.
-          </p>
-        </CovidAnnouncement>
         <ImageHolder>
           <CircleImage
             src={require("../Content/Images/circle_1.jpg")}
