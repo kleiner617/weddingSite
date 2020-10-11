@@ -24,7 +24,7 @@ type TimeType = {
 
 const Countdown: FunctionComponent<PropsType> = ({ isMobile }) => {
   const calculateTimeLeft = () => {
-    const difference = +new Date(2020, 4, 16, 16, 30) - +new Date();
+    const difference = +new Date(2020, 10, 14, 18, 0) - +new Date();
     let timeLeft = {
       days: 0,
       hours: 0,

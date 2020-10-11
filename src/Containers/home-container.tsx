@@ -93,7 +93,7 @@ const HomeContainer = () => {
           ></MenuHeader>
           <PhotoHeader />
           <NameHeaderDesktop />
-          {/* <CountdownComponent isMobile={true} /> */}
+          <CountdownComponent isMobile={true} />
         </div>
         <StickyHeader
           visibleSection={visibleSection}

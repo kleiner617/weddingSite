@@ -59,13 +59,21 @@ export class DetailsContainer extends React.PureComponent<Props> {
           {...this.props}
         ></FloralImage>
         <Title {...this.props}>Details</Title>
-        <Details>More details coming soon</Details>
-        {/* <Details>
+        <Details>
           <DetailsText {...this.props}>
             {" "}
-            The venue will be open at 4pm and the ceremony will start at 4:30pm
+            <div>
+            The venue will open at 6pm
+            </div>
+            <div>
+            Dinner will be provided by Urban Roost
+            </div>
+            <div>
+            Beer and Wine will be available at the bars
+
+            </div>
           </DetailsText>
-        </Details> */}
+        </Details>
       </FAQDetails>
     );
   }

@@ -83,9 +83,8 @@ export class CeremonyContainer extends React.PureComponent<Props> {
           ></FloralImage>
         </ImageHolder>
 
-        <Title {...this.props}>The Wedding</Title>
-        <Details>Date coming soon</Details>
-        {/* <Details {...this.props}>
+        <Title {...this.props}>The Reception</Title>
+        <Details {...this.props}>
           <i
             className="material-icons"
             style={{ marginTop: "10px", fontSize: "35px" }}
@@ -93,9 +92,9 @@ export class CeremonyContainer extends React.PureComponent<Props> {
             schedule
           </i>
           <DetailsTitle {...this.props}>When</DetailsTitle>
-          <DetailsText {...this.props}>May 16, 2020</DetailsText>
+          <DetailsText {...this.props}>November 14, 2020</DetailsText>
           <AtText {...this.props}>at</AtText>
-          <DetailsText {...this.props}>4:30 pm</DetailsText>
+          <DetailsText {...this.props}>6:00 pm</DetailsText>
         </Details>
         <Details>
           <i
@@ -109,7 +108,7 @@ export class CeremonyContainer extends React.PureComponent<Props> {
           <DetailsText {...this.props}>Urban Roost</DetailsText>
           <SubDetailsText {...this.props}>3023 W Marshall St</SubDetailsText>
           <SubDetailsText {...this.props}>Richmond, Virginia</SubDetailsText>
-        </Details> */}
+        </Details>
       </CeremonyDetails>
     );
   }

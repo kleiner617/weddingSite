@@ -84,7 +84,10 @@ export class COVIDContainer extends React.PureComponent<Props> {
 
         <Title {...this.props}>FAQ</Title>
         <Details {...this.props}>
-          <p>Please continue to check back here as we finalize the details!</p>
+          <p>We are taking COVID-19 very seriously and will continue to monitor the regulations and guidlines put in place by the CDC and govenor of Virginia</p>
+       <p/>
+      <p>Feel free to reach out to Heather or Emily if you would like more information on the precautions we are taking!</p>
+       
         </Details>
       </FAQDetails>
     );
